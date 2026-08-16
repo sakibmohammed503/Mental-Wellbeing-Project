@@ -8,17 +8,19 @@ app = Flask(__name__)
 CORS(app)
 
 EXCEL_FILE = "responses.xlsx"
+
+# Must match the order fields are appended in save_to_excel()
 HEADERS = [
     "Timestamp",
     "Age",
     "Gender",
-    "Social Media Hours",
+    "Social Media Hours / Day",
     "Sessions Per Day",
     "Avg Session Length (Mins)",
     "Late Night Usage",
-    "Short Video Hours",
+    "Short Video Hours / Day",
     "Sleep Hours",
-    "Study Hours Per Week",
+    "Study Hours / Week",
     "Digital Addiction Score",
     "Prediction"
 ]
@@ -76,7 +78,12 @@ def assess():
     try:
         data = request.get_json(force=True)
 
-        required_fields = ["social_media_hours", "sleep_hours", "digital_addiction_score", "late_night_usage"]
+        required_fields = [
+            "age", "gender", "social_media_hours", "sessions_per_day",
+            "average_session_length_minutes", "late_night_usage",
+            "short_video_hours", "sleep_hours", "study_hours_per_week",
+            "digital_addiction_score"
+        ]
         missing = [f for f in required_fields if f not in data]
         if missing:
             return jsonify({"error": f"Missing fields: {', '.join(missing)}"}), 400
