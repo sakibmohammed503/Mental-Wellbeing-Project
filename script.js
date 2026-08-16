@@ -55,7 +55,7 @@ safeAddListener(startBtn, "click", function() {
 });
 
 // 2. Handle Form Submission
-safeAddListener(document.getElementById("predictionForm"), "submit", function(event) {
+safeAddListener(document.getElementById("predictionForm"), "submit", async function(event) {
     event.preventDefault();
 
     let userData = {
@@ -71,7 +71,25 @@ safeAddListener(document.getElementById("predictionForm"), "submit", function(ev
         digital_addiction_score: parseFloat(document.getElementById("addictionScore").value)
     };
 
-    let riskLabel = predictMentalWellbeing(userData);
+    let riskLabel;
+    try {
+        const response = await fetch("http://127.0.0.1:5000/api/assess", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(userData)
+        });
+        const result = await response.json();
+        if (!response.ok) {
+            console.error("Backend error:", result.error);
+            alert("Something went wrong: " + result.error);
+            return;
+        }
+        riskLabel = result.prediction;
+    } catch (err) {
+        console.error("Network error:", err);
+        alert("Could not reach the server. Make sure the Flask backend is running.");
+        return;
+    }
 
     let resultBox = document.getElementById("resultBox");
     let resultText = document.getElementById("resultText");
@@ -90,7 +108,6 @@ safeAddListener(document.getElementById("predictionForm"), "submit", function(ev
 
     // animate result in and hide form
     animateHide(formScreen);
-    // force-hide the form immediately to avoid it reappearing over the result
     if (formScreen) {
         if (formScreen.__hideHandler) {
             formScreen.removeEventListener('animationend', formScreen.__hideHandler);
@@ -100,17 +117,11 @@ safeAddListener(document.getElementById("predictionForm"), "submit", function(ev
         formScreen.classList.add('hidden');
         formScreen.style.display = 'none';
         formScreen.style.opacity = '0';
-        console.debug('submit: forced hide formScreen, classes now:', formScreen.className);
     }
-    // slight delay to show result after form hides
     setTimeout(() => {
-        console.debug('showing resultBox, classes before:', resultBox.className);
-        // ensure result box is on top
         resultBox.style.zIndex = '30';
         resultBox.style.display = '';
         animateShow(resultBox, 'animate-in');
-        console.debug('resultBox shown, classes after:', resultBox.className);
-        // move keyboard focus to the result box for accessibility
         const restart = document.getElementById('restartBtn');
         if (resultBox) resultBox.focus();
         if (restart) restart.focus();
