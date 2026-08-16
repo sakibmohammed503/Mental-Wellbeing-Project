@@ -3,14 +3,6 @@
 // Remembers the user's choice across all pages using localStorage
 // ============================================
 
-// Inject favicon automatically on every page
-(function () {
-    const favicon = document.createElement("link");
-    favicon.rel = "icon";
-    favicon.href = "icon-192.png";
-    document.head.appendChild(favicon);
-})();
-
 (function () {
     const STORAGE_KEY = "mindful-theme";
 

@@ -73,13 +73,6 @@ safeAddListener(document.getElementById("predictionForm"), "submit", async funct
 
     let riskLabel;
     try {
-        const submitBtn = event.target.querySelector(".submit-btn");
-    const originalBtnText = submitBtn.textContent;
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<span class="btn-spinner"></span> Predicting...';
-
-    let riskLabel;
-    try {
         const response = await fetch("http://127.0.0.1:5000/api/assess", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -98,44 +91,35 @@ safeAddListener(document.getElementById("predictionForm"), "submit", async funct
         return;
     }
 
-     submitBtn.disabled = false;
-    submitBtn.textContent = originalBtnText;
-
-    let resultBox = document.getElementById("resultBox");
+     let resultBox = document.getElementById("resultBox");
     let resultText = document.getElementById("resultText");
 
     if (!resultBox) return;
-    resultBox.classList.remove("hidden", "high-risk", "low-risk");
-    resultBox.classList.remove('animate-in');
 
     if (riskLabel === "High Risk") {
+        resultBox.classList.remove("low-risk");
         resultBox.classList.add("high-risk");
         resultText.innerHTML = "<strong>Mental Well-being Level: High Risk</strong><br>Consider reducing late-night screen time and improving sleep habits.";
     } else {
+        resultBox.classList.remove("high-risk");
         resultBox.classList.add("low-risk");
         resultText.innerHTML = "<strong>Mental Well-being Level: Low Risk</strong><br>Great job maintaining a healthy routine!";
     }
 
-    // animate result in and hide form
-    animateHide(formScreen);
+    // Hide the form immediately (no animation dependency, so nothing can race)
     if (formScreen) {
-        if (formScreen.__hideHandler) {
-            formScreen.removeEventListener('animationend', formScreen.__hideHandler);
-            delete formScreen.__hideHandler;
-        }
         formScreen.classList.remove('animate-in', 'animate-out');
         formScreen.classList.add('hidden');
         formScreen.style.display = 'none';
         formScreen.style.opacity = '0';
     }
-    setTimeout(() => {
-        resultBox.style.zIndex = '30';
-        resultBox.style.display = '';
-        animateShow(resultBox, 'animate-in');
-        const restart = document.getElementById('restartBtn');
-        if (resultBox) resultBox.focus();
-        if (restart) restart.focus();
-    }, 220);
+
+    // Show the result box — one single, direct show, no re-trigger later
+    resultBox.classList.remove('hidden');
+    resultBox.style.display = '';
+    resultBox.style.opacity = '1';
+    resultBox.style.zIndex = '30';
+    resultBox.focus();
 });
 
 // 3. Click "Check Again" to reset the page back to welcome screen
