@@ -73,6 +73,13 @@ safeAddListener(document.getElementById("predictionForm"), "submit", async funct
 
     let riskLabel;
     try {
+        const submitBtn = event.target.querySelector(".submit-btn");
+    const originalBtnText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="btn-spinner"></span> Predicting...';
+
+    let riskLabel;
+    try {
         const response = await fetch("http://127.0.0.1:5000/api/assess", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -90,6 +97,9 @@ safeAddListener(document.getElementById("predictionForm"), "submit", async funct
         alert("Could not reach the server. Make sure the Flask backend is running.");
         return;
     }
+
+     submitBtn.disabled = false;
+    submitBtn.textContent = originalBtnText;
 
     let resultBox = document.getElementById("resultBox");
     let resultText = document.getElementById("resultText");
