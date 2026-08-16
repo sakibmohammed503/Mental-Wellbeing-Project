@@ -392,7 +392,18 @@ h1 {
 }
 
 .who-history-copy {
-    max-width: 760px;
+    max-width: 100%;
+}
+
+.who-history-copy p {
+    text-align: justify;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.who-history-copy h4 {
+    margin-top: 14px;
+    margin-bottom: 4px;
 }
 
 .who-history-copy h3 {
