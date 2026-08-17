@@ -483,4 +483,26 @@ h1 {
     margin-bottom: 6px;
 }
 
-(stat truncated for brevity)
+#restartBtn {
+    margin-top: 16px;
+    display: inline-block;
+    padding: 12px 26px;
+    background: linear-gradient(90deg, #0ea5ff 0%, #0d8bdb 50%, #0a6ad1 100%);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(13, 123, 210, 0.14);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+#restartBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(13, 123, 210, 0.2);
+}
+
+#restartBtn:active {
+    transform: translateY(0);
+}
