@@ -51,7 +51,9 @@ safeAddListener(startBtn, "click", function() {
 
 // 2. Handle Form Submission
 safeAddListener(document.getElementById("predictionForm"), "submit", async function(event) {
+    // PREVENT PAGE RELOAD
     event.preventDefault();
+    event.stopPropagation();
 
     let userData = {
         age: parseInt(document.getElementById("age").value),
@@ -70,7 +72,8 @@ safeAddListener(document.getElementById("predictionForm"), "submit", async funct
         const response = await fetch("https://mental-wellbeing-project.onrender.com/api/assess", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(userData)
+            body: JSON.stringify(userData),
+            keepalive: true
         });
 
         const result = await response.json();
@@ -81,9 +84,7 @@ safeAddListener(document.getElementById("predictionForm"), "submit", async funct
             return;
         }
 
-        // Get the risk prediction from backend response
         let riskLabel = result.prediction;
-
         let resultBox = document.getElementById("resultBox");
         let resultText = document.getElementById("resultText");
 
@@ -99,7 +100,6 @@ safeAddListener(document.getElementById("predictionForm"), "submit", async funct
             resultText.innerHTML = "<strong>Mental Well-being Level: Low Risk</strong><br>Great job maintaining a healthy routine!";
         }
 
-        // Hide the form immediately
         if (formScreen) {
             formScreen.classList.remove('animate-in', 'animate-out');
             formScreen.classList.add('hidden');
@@ -107,7 +107,6 @@ safeAddListener(document.getElementById("predictionForm"), "submit", async funct
             formScreen.style.opacity = '0';
         }
 
-        // Show the result box
         resultBox.classList.remove('hidden');
         resultBox.style.display = '';
         resultBox.style.opacity = '1';
@@ -118,6 +117,8 @@ safeAddListener(document.getElementById("predictionForm"), "submit", async funct
         console.error("Network error:", error);
         alert("Could not reach the server. Make sure the Flask backend is running on Render.");
     }
+    
+    return false;
 });
 
 // 3. Click "Check Again" to reset the page back to welcome screen
