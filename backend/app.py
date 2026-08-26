@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 from openpyxl import Workbook, load_workbook
 from datetime import datetime
@@ -7,7 +7,8 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-EXCEL_FILE = "responses.xlsx"
+# Use /tmp directory for cloud storage compatibility on Render
+EXCEL_FILE = "/tmp/responses.xlsx"
 
 # Must match the order fields are appended in save_to_excel()
 HEADERS = [
@@ -96,6 +97,15 @@ def assess():
             "message": "Assessment saved successfully"
         }), 200
 
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/download-data", methods=["GET"])
+def download_file():
+    try:
+        ensure_excel_exists()
+        return send_file(EXCEL_FILE, as_attachment=True, download_name="responses.xlsx")
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
