@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const formScreen = document.getElementById("formScreen");
     const startBtn = document.getElementById("startBtn");
     const restartBtn = document.getElementById("restartBtn");
+    const downloadBtn = document.getElementById("downloadBtn");
     const predictionForm = document.getElementById("predictionForm");
     const resultBox = document.getElementById("resultBox");
     const resultText = document.getElementById("resultText");
@@ -93,6 +94,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 resultBox.style.display = "none";
             }
             if (formScreen) formScreen.classList.remove("hidden");
+            if (downloadBtn) downloadBtn.classList.remove("hidden");
+        });
+    }
+
+    // 4. Click "Download" — hide button after click
+    if (downloadBtn) {
+        downloadBtn.addEventListener("click", function () {
+            setTimeout(function () {
+                downloadBtn.classList.add("hidden");
+            }, 300);
         });
     }
 });
