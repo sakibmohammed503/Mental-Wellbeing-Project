@@ -2,5 +2,9 @@ Flask
 flask-cors
 gunicorn
 pandas
+numpy
 scikit-learn
 openpyxl
+shap
+xgboost
+catboost

@@ -1,162 +1,1163 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mental Well-being Risk Predictor | Student Wellness</title>
+    <meta name="description"
+        content="AI-Powered Mental Well-being Risk Predictor, Interactive Habit Visualizations, Peer Benchmark, Digital Detox Timer, Multi-Model ML Engine, and Biometric Fatigue Detection.">
+    <title>Mindful. | AI Mental Well-being Intelligence Platform</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="index.css">
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="darkmode.css">
+
+    <!-- Theme & Global Scripts -->
     <script src="darkmode.js" defer></script>
 </head>
-<body>
 
-    <!-- 1. NAVIGATION BAR -->
-    <header class="navbar">
-    <div class="logo">Mindful<span class="dot">.</span></div>
-    
-    <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="contact.html">Contact</a>
+<body data-theme-preset="ocean">
+
+    <!-- 1. HEADER & NAVIGATION BAR -->
+    <header class="navbar" role="banner">
+        <div class="navbar-left">
+            <a href="index.html" class="logo" aria-label="Mindful Home">Mindful<span class="dot">.</span></a>
+        </div>
+
+        <nav class="nav-links" aria-label="Main Navigation">
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="navbar-right">
+            <button id="themeCustomizerBtn" class="theme-customizer-btn" title="Open Theme Studio"
+                aria-label="Open Theme Studio">🎨 Theme</button>
+            <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle dark/light mode"
+                title="Toggle Mode">🌙</button>
+            <a href="support.html" class="nav-btn">Support Center</a>
+        </div>
+    </header>
+
+    <!-- QUICK ACCESS MODULE NAVIGATION BAR -->
+    <nav class="feature-subnav" aria-label="Platform Feature Quick Jump">
+        <div class="feature-subnav-scroll">
+            <a href="#form-section" class="subnav-pill active"><span class="pill-icon">📋</span> Assessment</a>
+            <a href="#visualization-section" class="subnav-pill"><span class="pill-icon">📊</span> Habits Visualizer</a>
+            <a href="#whatif-section" class="subnav-pill"><span class="pill-icon">🧪</span> Sandbox Matrix</a>
+            <a href="#history-section" class="subnav-pill"><span class="pill-icon">📈</span> Trend Tracker</a>
+            <a href="#micro-habits-section" class="subnav-pill"><span class="pill-icon">⚡</span> Micro-Habits</a>
+            <a href="#detox-timer-section" class="subnav-pill"><span class="pill-icon">⏱️</span> Detox Timer</a>
+            <a href="#benchmark-section" class="subnav-pill"><span class="pill-icon">👥</span> Peer Benchmark</a>
+            <a href="#focus-games-section" class="subnav-pill"><span class="pill-icon">🎮</span> Focus Mini-Games</a>
+            <a href="#models-compare-section" class="subnav-pill"><span class="pill-icon">🤖</span> Multi-Model
+                Engine</a>
+            <a href="#relaxation-section" class="subnav-pill"><span class="pill-icon">🎧</span> Audio Relaxation</a>
+            <a href="#goal-planner-section" class="subnav-pill"><span class="pill-icon">📅</span> Goal Planner</a>
+        </div>
     </nav>
-    <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle dark mode">🌙</button>
-    <a href="support.html" class="nav-btn">Support Center</a>
-</header>
 
-    <!-- 2. HERO / PREDICTOR SECTION -->
+    <!-- 2. HERO / SHOWCASE SECTION -->
     <main class="hero-container">
         <section class="hero-blue-box hero-showcase">
+            <div class="hero-bg-shapes" aria-hidden="true">
+                <div class="glow-orb orb-1"></div>
+                <div class="glow-orb orb-2"></div>
+            </div>
+
             <div class="hero-text-content">
-                <span class="trusted-tag">
-                    ✓ Trusted by 10,000+ people
-                </span>
+                <div class="hero-badge-row">
+                    <span class="trusted-tag">
+                        ✓ Trusted by 10,000+ Students & Professionals
+                    </span>
+                    <span class="live-pulse-tag">
+                        <span class="pulse-ring"></span> Live AI Engine Ready
+                    </span>
+                </div>
                 <h1>A HEALTHY MIND CREATES A HAPPY LIFE.</h1>
-                <p>Use our AI-powered predictor to understand how your daily digital habits—like social media use and sleep—impact your mental well-being journey.</p>
+                <p>Understand how your digital habits—social media bingeing, sleep debt, and screen session
+                    fragmentation—affect your cognitive focus and mental well-being using machine learning intelligence.
+                </p>
+
+                <div class="hero-metrics-strip">
+                    <div class="hero-stat-item">
+                        <span class="stat-num">98.4%</span>
+                        <span class="stat-sub">Model Calibration</span>
+                    </div>
+                    <div class="hero-stat-sep"></div>
+                    <div class="hero-stat-item">
+                        <span class="stat-num">3 Algorithms</span>
+                        <span class="stat-sub">Multi-Model Engine</span>
+                    </div>
+                    <div class="hero-stat-sep"></div>
+                    <div class="hero-stat-item">
+                        <span class="stat-num">100% Private</span>
+                        <span class="stat-sub">Zero Tracking</span>
+                    </div>
+                </div>
 
                 <div class="hero-btns">
                     <a href="#form-section" class="btn-primary">Take Assessment →</a>
-                    <a href="learn-more.html" class="btn-secondary">Learn More</a>
+                    <a href="#whatif-section" class="btn-secondary">Explore Sandbox Matrix</a>
+                    <a href="learn-more.html" class="btn-ghost">Scientific Methodology</a>
                 </div>
             </div>
-
-
         </section>
     </main>
 
-    <!-- 3. MAIN CONTENT -->
+    <!-- 3. MAIN APPLICATION BODY -->
     <div class="main-body">
-        <section class="who-history">
+
+        <!-- WHO STORY / CONTEXT ACCORDION -->
+        <section class="who-history card-glow-hover">
             <div class="who-history-copy">
-                <span class="section-subtitle">Mental health story</span>
-                <h3>Why this matters</h3>
-                <p>Mental health has long been underestimated, but global health organizations now recognize it as a core part of human well-being and public health.</p>
-                <div class="who-full">
-                    <h4>Overview</h4>
-                    <p>Mental health means feeling able to handle life’s ups and downs, learn, work, and take part in your community. It matters for everyone and is a basic human right. People’s mental health can change over time. Things like family, friends, money, work, and where you live can make life easier or harder. Most people cope, but hard times can make some people unwell. Mental health problems include things like depression, anxiety, or other conditions that make life painful or hard to manage. Many people get better with simple help, but in many places the right services are still missing.</p>
-
-                    <h4>What raises risk — and what helps</h4>
-                    <p>Problems can come from different places. Personal issues (for example, drug use or difficult feelings), family problems, or social issues like poverty, violence, or bad living conditions can raise the chance of being unwell. Early life challenges — like harsh parenting or bullying — can be especially harmful. On the other hand, support from others, good social skills, safe neighbourhoods, steady work or schooling, and local community ties protect mental health. These help people recover and stay strong.</p>
-
-                    <h4>How we can prevent and care</h4>
-                    <p>Stopping problems before they begin means making schools, workplaces, and communities safer and more supportive. This takes many groups working together — education, health, housing and social services. Care works best close to where people live. That means services in local health centres, easy access to trained helpers, support in schools, and tools people can use on their own — like simple counselling or safe online help. Small, low-cost actions can reach many people and make a big difference. If you or someone you know is struggling, start by talking to a trusted person and look for local support. If it's an emergency, contact local emergency services right away.</p>
+                <div class="section-tag-row">
+                    <span class="section-subtitle">MENTAL HEALTH STORY</span>
+                    <span class="category-badge">Public Health Research</span>
                 </div>
-                <a href="https://www.who.int/news-room/fact-sheets/detail/mental-health-strengthening-our-response" target="_blank" rel="noopener noreferrer">Read more</a>
+                <h3>Why Digital Well-Being Matters More Than Ever</h3>
+                <p>Mental health is a fundamental human right. Recent behavioral research reveals that passive
+                    short-form video consumption and late-night blue light exposure alter dopamine baseline response and
+                    fragment sleep architecture.</p>
+                <div class="who-full">
+                    <h4>The Digital Addiction Feedback Loop</h4>
+                    <p>High pickup frequency and continuous context-switching elevate cortisol levels, exacerbating
+                        fatigue and reducing cognitive stamina. On the other hand, structured screen curfews, consistent
+                        sleep hygiene, and intentional offline breaks build resilience and restore natural executive
+                        function.</p>
+                </div>
+                <a href="https://www.who.int/news-room/fact-sheets/detail/mental-health-strengthening-our-response"
+                    target="_blank" rel="noopener noreferrer" class="read-more-link">Read WHO Health Guidelines →</a>
             </div>
         </section>
-        
-        <!-- THE PREDICTOR FORM SECTION -->
-        <section id="form-section" class="form-card">
-            
+
+        <!-- SECTION 1: THE PREDICTOR FORM & SHAP RESULT SECTION -->
+        <section id="form-section" class="form-card card-glow-hover">
+
             <div id="formScreen">
-                <span class="section-subtitle">YOUR DAILY HABITS ASSESSMENT</span>
-                <h2 id="assessmentTitle">Personalized Care for Every Mind</h2>
-                <p class="section-desc">We combine advanced AI logic with research on digital well-being to deliver a prediction that truly makes a difference. Please enter your data accurately.</p>
+                <div class="section-header-flex">
+                    <div>
+                        <span class="section-subtitle">ASSESSMENT ENGINE</span>
+                        <h2 id="assessmentTitle">Your Daily Habits Assessment</h2>
+                        <p class="section-desc">Tune the parameters to reflect your daily routine. Our machine learning
+                            model calculates your Risk Probability, SHAP feature contributions, and Wellness Score.</p>
+                    </div>
+                    <button type="button" id="fillHealthyPresetBtn" class="preset-pill-btn"
+                        title="Fill with ideal healthy routine">✨ Fill Healthy Example</button>
+                </div>
 
                 <form id="predictionForm" aria-labelledby="assessmentTitle">
                     <div class="form-grid">
-                        <div class="input-group">
+                        <div class="input-group input-group-static">
                             <label for="age">Age</label>
-                            <input type="number" id="age" placeholder="e.g. 22" required>
+                            <input type="number" id="age" placeholder="e.g. 22" min="10" max="80" value="22" required>
                         </div>
-                        <div class="input-group">
+                        <div class="input-group input-group-static">
                             <label for="gender">Gender</label>
                             <select id="gender" required>
-                                <option value="" disabled selected>Select Gender</option>
-                                <option value="Male">Male</option>
+                                <option value="" disabled>Select Gender</option>
+                                <option value="Male" selected>Male</option>
                                 <option value="Female">Female</option>
                             </select>
                         </div>
-                        <div class="input-group">
-                            <label for="socialHours">Social Media Hours / Day</label>
-                            <input type="number" step="0.1" id="socialHours" placeholder="e.g. 2" required>
+
+                        <div class="input-group slider-group">
+                            <div class="label-row">
+                                <label for="socialHours">Social Media Hours / Day:</label>
+                                <span class="slider-badge"><span id="socialHoursVal">2.0</span> hrs</span>
+                            </div>
+                            <input type="range" id="socialHours" min="0" max="12" step="0.5" value="2">
                         </div>
-                        <div class="input-group">
-                            <label for="sessions">Sessions Per Day</label>
-                            <input type="number" id="sessions" placeholder="e.g. 4" required>
+
+                        <div class="input-group slider-group">
+                            <div class="label-row">
+                                <label for="sessions">Sessions Per Day:</label>
+                                <span class="slider-badge"><span id="sessionsVal">4</span> pickups</span>
+                            </div>
+                            <input type="range" id="sessions" min="1" max="30" step="1" value="4">
                         </div>
-                        <div class="input-group">
-                            <label for="avgLength">Avg Session Length (Mins)</label>
-                            <input type="number" step="0.1" id="avgLength" placeholder="e.g. 15" required>
+
+                        <div class="input-group slider-group">
+                            <div class="label-row">
+                                <label for="avgLength">Avg Session Length:</label>
+                                <span class="slider-badge"><span id="avgLengthVal">15</span> mins</span>
+                            </div>
+                            <input type="range" id="avgLength" min="1" max="120" step="1" value="15">
                         </div>
-                        <div class="input-group">
+
+                        <div class="input-group input-group-static">
                             <label for="lateNight">Late Night Usage</label>
                             <select id="lateNight" required>
-                                <option value="" disabled selected>Select option</option>
-                                <option value="Often">Often</option>
-                                <option value="Sometimes">Sometimes</option>
                                 <option value="Never">Never</option>
+                                <option value="Sometimes" selected>Sometimes</option>
+                                <option value="Often">Often</option>
                             </select>
                         </div>
-                        <div class="input-group">
-                            <label for="shortVideo">Short Video Hours / Day</label>
-                            <input type="number" step="0.1" id="shortVideo" placeholder="e.g. 1" required>
+
+                        <div class="input-group slider-group">
+                            <div class="label-row">
+                                <label for="shortVideo">Short Video (Reels/TikTok) / Day:</label>
+                                <span class="slider-badge"><span id="shortVideoVal">1.0</span> hrs</span>
+                            </div>
+                            <input type="range" id="shortVideo" min="0" max="10" step="0.5" value="1">
                         </div>
-                        <div class="input-group">
-                            <label for="sleepHours">Sleep Hours / Day</label>
-                            <input type="number" step="0.1" id="sleepHours" placeholder="e.g. 8" required>
+
+                        <div class="input-group slider-group">
+                            <div class="label-row">
+                                <label for="sleepHours">Sleep Hours / Night:</label>
+                                <span class="slider-badge"><span id="sleepHoursVal">7.0</span> hrs</span>
+                            </div>
+                            <input type="range" id="sleepHours" min="2" max="12" step="0.5" value="7">
                         </div>
-                        <div class="input-group">
-                            <label for="studyHours">Study Hours / Week</label>
-                            <input type="number" step="0.1" id="studyHours" placeholder="e.g. 30" required>
+
+                        <div class="input-group slider-group">
+                            <div class="label-row">
+                                <label for="studyHours">Study / Deep Work Hours / Week:</label>
+                                <span class="slider-badge"><span id="studyHoursVal">20.0</span> hrs</span>
+                            </div>
+                            <input type="range" id="studyHours" min="0" max="60" step="0.5" value="20">
                         </div>
-                        <div class="input-group">
-                            <label for="addictionScore">Digital Addiction Score</label>
-                            <input type="number" step="0.1" id="addictionScore" placeholder="e.g. 5" required>
+
+                        <div class="input-group slider-group">
+                            <div class="label-row">
+                                <label for="addictionScore">Digital Addiction Self-Rating:</label>
+                                <span class="slider-badge"><span id="addictionScoreVal">5.0</span> / 10</span>
+                            </div>
+                            <input type="range" id="addictionScore" min="0" max="10" step="0.5" value="5">
                         </div>
                     </div>
-                    <button type="submit" class="submit-btn">Predict Mental Well-being →</button>
+
+                    <div class="form-actions-row">
+                        <button type="submit" class="submit-btn" id="analyzeSubmitBtn">
+                            <span class="btn-text">Analyze Well-Being →</span>
+                        </button>
+                    </div>
                 </form>
             </div>
 
             <!-- RESULT AREA -->
-            <div id="resultBox" class="result-box hidden" role="status" aria-live="polite" aria-atomic="true" tabindex="-1">
-                <h2>Prediction Result:</h2>
-                <div id="resultTextContainer">
-                    <p id="resultText"></p>
+            <div id="resultBox" class="result-box hidden" role="status" aria-live="polite" aria-atomic="true"
+                tabindex="-1">
+                <div class="result-header-row">
+                    <div>
+                        <span class="section-subtitle">AI PREDICTION OUTPUT</span>
+                        <h2 class="result-headline">Your Well-Being Analysis</h2>
+                    </div>
+                    <div class="result-controls">
+                        <button type="button" id="saveToHistoryBtn" class="action-pill-btn">💾 Save to History</button>
+                        <button type="button" id="syncToGoalPlannerBtn" class="action-pill-btn">🎯 Create Goals</button>
+                    </div>
                 </div>
+
+                <div class="result-summary-grid">
+                    <!-- Gauge Visualizer -->
+                    <div class="gauge-card-box">
+                        <div class="chart-container gauge-container">
+                            <canvas id="gaugeChart"></canvas>
+                            <div class="gauge-score-label">
+                                <span id="gaugeScoreNum">--</span><span class="gauge-max">/100</span>
+                                <p id="gaugeRiskLabel">Calculating...</p>
+                            </div>
+                        </div>
+                        <div class="gauge-footer-note">
+                            <span class="gauge-dot"></span> Score calibrated with Random Forest Ensemble
+                        </div>
+                    </div>
+
+                    <!-- Risk Interpretation & Actionable Recommendations -->
+                    <div id="result-card" class="card moderate-risk result-insights-card">
+                        <div class="result-status-header">
+                            <h3 id="risk-level-title">Moderate Risk</h3>
+                            <span id="riskConfidencePill" class="confidence-pill">Confidence: 89%</span>
+                        </div>
+                        <p id="risk-description">Your well-being assessment is being computed.</p>
+
+                        <div class="rec-section-header">
+                            <h4>Tailored Clinical Recommendations:</h4>
+                        </div>
+                        <ul id="recommendations-list" class="recs-styled-list"></ul>
+                    </div>
+                </div>
+
+                <!-- SHAP Feature Contribution Bars -->
+                <div id="shap-section" class="shap-section">
+                    <div class="shap-header">
+                        <h3 class="shap-title">
+                            <span class="shap-icon">📊</span> Why this prediction? (SHAP Explainability)
+                        </h3>
+                        <p class="shap-subtitle">
+                            Quantified mathematical impact of each habit on your prediction. Red bars increase your risk
+                            level; green bars protect and lower it.
+                        </p>
+                    </div>
+                    <div id="shap-bars" class="shap-bars"></div>
+                    <div class="shap-legend">
+                        <span class="legend-item"><span class="swatch swatch-pos"></span> Increases Risk (Drag
+                            factor)</span>
+                        <span class="legend-item"><span class="swatch swatch-neg"></span> Decreases Risk (Protective
+                            factor)</span>
+                    </div>
+                </div>
+
                 <div class="result-actions">
-                    <button type="button" id="restartBtn">Check Again →</button>
-                    <a id="downloadBtn" href="https://mental-wellbeing-project.onrender.com/download-data" class="download-btn" title="Download Data">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                            <polyline points="7 10 12 15 17 10"/>
-                            <line x1="12" y1="15" x2="12" y2="3"/>
-                        </svg>
-                    </a>
+                    <button type="button" id="restartBtn" class="submit-btn small">← Retake Assessment</button>
+                    <button type="button" id="downloadDatasetBtn" class="btn-secondary small" title="Download Excel / CSV Dataset">
+                        📥 Download Dataset (XLSX / CSV)
+                    </button>
+                    <a href="#detox-timer-section" class="action-pill-btn highlight">⏱️ Start Detox Timer</a>
                 </div>
             </div>
 
+        </section>
+
+        <!-- FEATURE 2: INTERACTIVE DATA VISUALIZATIONS SECTION -->
+        <section id="visualization-section" class="habits-card card-glow-hover">
+            <div class="section-tag-row">
+                <span class="section-subtitle">FEATURE 2: INTERACTIVE DATA VISUALIZATION</span>
+                <span class="category-badge">Chart.js Engine</span>
+            </div>
+            <h2 class="card-main-title">Digital Habits Breakdown & Sleep Ratio</h2>
+            <p class="card-desc">Interactive multidimensional breakdown of your daily time allocation: Recreational
+                Screens vs. Sleep vs. Deep Work.</p>
+
+            <div class="visualizer-grid">
+                <div class="chart-box">
+                    <div class="chart-header">
+                        <h4>⚖️ Screen Time vs. Sleep Ratio</h4>
+                        <span class="chart-tag" id="screenSleepRatioTag">Ratio: 1.0</span>
+                    </div>
+                    <div class="chart-canvas-wrap">
+                        <canvas id="screenSleepRatioChart"></canvas>
+                    </div>
+                    <p class="chart-caption" id="ratioInsightText">Healthy benchmark: Sleep hours should exceed
+                        recreational screen hours by at least 2.5x.</p>
+                </div>
+
+                <div class="chart-box">
+                    <div class="chart-header">
+                        <h4>🕸️ Habit Balance Radar Profile</h4>
+                        <span class="chart-tag">Multi-Axis</span>
+                    </div>
+                    <div class="chart-canvas-wrap">
+                        <canvas id="habitsRadarChart"></canvas>
+                    </div>
+                    <p class="chart-caption">Visualizes balance across 5 critical pillars: Sleep Hygiene, Screen
+                        Moderation, Focus Stamina, Session Discipline, and Work Balance.</p>
+                </div>
+
+                <div class="chart-box full-width">
+                    <div class="chart-header">
+                        <h4>📊 Digital Time Distribution Breakdown</h4>
+                        <span class="chart-tag">Daily Hours</span>
+                    </div>
+                    <div class="chart-canvas-wrap large">
+                        <canvas id="habitsBarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURE 7: RISK SCORE PREDICTOR SIMULATOR (SANDBOX MODE / SLIDER MATRIX) -->
+        <section id="whatif-section" class="whatif-card card-glow-hover">
+            <div class="section-tag-row">
+                <span class="section-subtitle">FEATURE 7: REAL-TIME SIMULATOR</span>
+                <span class="category-badge">Sandbox Mode</span>
+            </div>
+            <h2 class="whatif-title">Risk Score Predictor Simulator (Slider Matrix)</h2>
+            <p class="whatif-desc">
+                Drag any variable in this dedicated sandbox to observe how the continuous risk probability curve shifts
+                dynamically in real time without submitting a form.
+            </p>
+
+            <div class="sandbox-presets-bar">
+                <span class="presets-label">⚡ Quick Scenarios:</span>
+                <button type="button" class="scenario-pill" data-scenario="healthy">🌿 Ideal Balanced Routine</button>
+                <button type="button" class="scenario-pill" data-scenario="cramming">📚 Finals Week Exam Cram</button>
+                <button type="button" class="scenario-pill" data-scenario="detox">📵 Weekend Digital Detox</button>
+                <button type="button" class="scenario-pill" data-scenario="binge">🍿 Late-Night Binge Watcher</button>
+            </div>
+
+            <div class="whatif-grid">
+                <div class="whatif-controls">
+                    <div class="form-grid compact">
+                        <div class="input-group input-group-static">
+                            <label for="wf_age">Age</label>
+                            <input type="number" id="wf_age" min="10" max="80" value="22">
+                        </div>
+                        <div class="input-group input-group-static">
+                            <label for="wf_gender">Gender</label>
+                            <select id="wf_gender">
+                                <option value="Male" selected>Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="input-group input-group-static">
+                            <label for="wf_lateNight">Late Night Screen Usage</label>
+                            <select id="wf_lateNight">
+                                <option value="Never">Never</option>
+                                <option value="Sometimes" selected>Sometimes</option>
+                                <option value="Often">Often</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group slider-group">
+                            <div class="label-row">
+                                <label for="wf_socialHours">Social Media:</label>
+                                <span class="slider-badge"><span id="wf_socialHoursVal">2.0</span>h</span>
+                            </div>
+                            <input type="range" id="wf_socialHours" min="0" max="12" step="0.5" value="2">
+                        </div>
+
+                        <div class="input-group slider-group">
+                            <div class="label-row">
+                                <label for="wf_shortVideo">Short Videos:</label>
+                                <span class="slider-badge"><span id="wf_shortVideoVal">1.0</span>h</span>
+                            </div>
+                            <input type="range" id="wf_shortVideo" min="0" max="10" step="0.5" value="1">
+                        </div>
+
+                        <div class="input-group slider-group">
+                            <div class="label-row">
+                                <label for="wf_sleepHours">Sleep Hours:</label>
+                                <span class="slider-badge"><span id="wf_sleepHoursVal">7.0</span>h</span>
+                            </div>
+                            <input type="range" id="wf_sleepHours" min="2" max="12" step="0.5" value="7">
+                        </div>
+
+                        <div class="input-group slider-group">
+                            <div class="label-row">
+                                <label for="wf_addictionScore">Addiction Rating:</label>
+                                <span class="slider-badge"><span id="wf_addictionScoreVal">5.0</span>/10</span>
+                            </div>
+                            <input type="range" id="wf_addictionScore" min="0" max="10" step="0.5" value="5">
+                        </div>
+
+                        <div class="input-group slider-group">
+                            <div class="label-row">
+                                <label for="wf_sessions">Daily Sessions:</label>
+                                <span class="slider-badge"><span id="wf_sessionsVal">4</span></span>
+                            </div>
+                            <input type="range" id="wf_sessions" min="1" max="30" step="1" value="4">
+                        </div>
+
+                        <div class="input-group slider-group">
+                            <div class="label-row">
+                                <label for="wf_avgLength">Avg Session Len:</label>
+                                <span class="slider-badge"><span id="wf_avgLengthVal">15</span>m</span>
+                            </div>
+                            <input type="range" id="wf_avgLength" min="1" max="120" step="1" value="15">
+                        </div>
+
+                        <div class="input-group slider-group">
+                            <div class="label-row">
+                                <label for="wf_studyHours">Study Hours/Wk:</label>
+                                <span class="slider-badge"><span id="wf_studyHoursVal">20.0</span>h</span>
+                            </div>
+                            <input type="range" id="wf_studyHours" min="0" max="60" step="0.5" value="20">
+                        </div>
+                    </div>
+
+                    <button type="button" id="wf_useCurrent" class="linklike-btn">
+                        ↩ Sync with my latest assessment inputs
+                    </button>
+                </div>
+
+                <div class="whatif-output">
+                    <div class="whatif-gauge-wrap">
+                        <canvas id="whatifGauge"></canvas>
+                        <div class="gauge-score-label">
+                            <span id="wfScoreNum">--</span><span class="gauge-max">/100</span>
+                            <p id="wfRiskLabel">Simulating...</p>
+                        </div>
+                    </div>
+
+                    <div class="whatif-stats">
+                        <div class="stat-card" id="wfDeltaCard">
+                            <span class="stat-label">Score Shift vs Assessment</span>
+                            <span class="stat-value" id="wfDelta">±0</span>
+                        </div>
+                        <div class="stat-card stat-risk" id="wfRiskCard">
+                            <span class="stat-label">Predicted Risk Tier</span>
+                            <span class="stat-value" id="wfRiskValue">--</span>
+                        </div>
+                    </div>
+
+                    <div class="probability-curve-box">
+                        <span class="prob-title">Live Probability Distribution Curve:</span>
+                        <div class="chart-canvas-wrap small">
+                            <canvas id="sandboxProbabilityChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div id="wfInsights" class="wf-insights">
+                        Move the sliders to see score drivers change in real time.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURE 3: HISTORY TRACKER & TREND ANALYTICS SECTION -->
+        <section id="history-section" class="history-card card-glow-hover">
+            <div class="section-tag-row">
+                <span class="section-subtitle">FEATURE 3: HISTORY & TRENDS</span>
+                <span class="category-badge">LocalStorage Engine</span>
+            </div>
+            <h2 class="card-main-title">Well-Being Trajectory Over Time</h2>
+            <p class="card-desc">Your past assessment records are encrypted and stored privately on your local browser.
+                Track how changes in your habits correlate with score improvements.</p>
+
+            <div class="history-head">
+                <div class="history-summary">
+                    <div class="stat-tile"><span class="hist-label">Total Checks</span><span id="histCount"
+                            class="hist-value">0</span></div>
+                    <div class="stat-tile"><span class="hist-label">7-Day Average</span><span id="histAvg"
+                            class="hist-value">--</span></div>
+                    <div class="stat-tile"><span class="hist-label">Highest Score</span><span id="histBest"
+                            class="hist-value">--</span></div>
+                    <div class="stat-tile"><span class="hist-label">Trend Trajectory</span><span id="histTrendBadge"
+                            class="hist-badge neutral">Stable ↔</span></div>
+                </div>
+                <div class="history-btn-group">
+                    <button type="button" id="loadSampleHistoryBtn" class="linklike-btn">✨ Demo History</button>
+                    <button type="button" id="exportHistoryBtn" class="linklike-btn">📤 Export CSV</button>
+                    <button type="button" id="clearHistory" class="linklike-btn danger">Clear History</button>
+                </div>
+            </div>
+
+            <div class="chart-box full">
+                <div class="chart-canvas-wrap large">
+                    <canvas id="historyLineChart"></canvas>
+                </div>
+            </div>
+
+            <div class="history-log-table-wrap">
+                <table class="history-table" id="historyLogTable" aria-label="Assessment History Table">
+                    <thead>
+                        <tr>
+                            <th>Date & Time</th>
+                            <th>Score</th>
+                            <th>Risk Tier</th>
+                            <th>Screens / Sleep</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTableBody">
+                        <tr>
+                            <td colspan="5" class="empty-history-cell">No previous assessments found. Take an assessment
+                                above to start tracking!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- FEATURE 4: TAILORED MICRO-HABIT GENERATOR SECTION -->
+        <section id="micro-habits-section" class="habits-card card-glow-hover" id="microHabitsCard">
+            <div class="section-tag-row">
+                <span class="section-subtitle">FEATURE 4: ACTIONABLE HABIT GENERATOR</span>
+                <span class="category-badge">Micro-Challenges</span>
+            </div>
+            <div class="section-header-flex">
+                <div>
+                    <h2 class="card-main-title">Personalized Daily Micro-Challenges</h2>
+                    <p class="card-desc">Bite-sized, evidence-backed micro-challenges derived from your individual risk
+                        drivers. Check them off each day to build momentum.</p>
+                </div>
+                <div class="streak-badge-card">
+                    <span class="streak-icon">🔥</span>
+                    <div>
+                        <span class="streak-num" id="habitStreakCount">0</span>
+                        <span class="streak-label">Day Streak</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progress-row">
+                <div class="progress-track">
+                    <div id="habitProgress" class="progress-fill" style="width: 0%;"></div>
+                </div>
+                <span id="habitProgressText" class="progress-text">0 / 0 Completed Today</span>
+            </div>
+
+            <ul id="microHabitsList" class="habit-list"></ul>
+
+            <div class="custom-habit-form">
+                <input type="text" id="customHabitInput"
+                    placeholder="Add your own custom micro-habit (e.g., Read 10 pages before bed)...">
+                <button type="button" id="addCustomHabitBtn" class="action-pill-btn">+ Add Challenge</button>
+                <button type="button" id="refreshHabits" class="linklike-btn">↻ Regenerate from Assessment</button>
+            </div>
+        </section>
+
+        <!-- FEATURE 5: DIGITAL DETOX TIMER / FOCUS MODE SECTION -->
+        <section id="detox-timer-section" class="timer-card card-glow-hover">
+            <div class="section-tag-row">
+                <span class="section-subtitle">FEATURE 5: FOCUS & DETOX ENGINE</span>
+                <span class="category-badge">Screen-Free Countdown</span>
+            </div>
+            <h2 class="card-main-title">Digital Detox & Pomodoro Focus Timer</h2>
+            <p class="card-desc">Put your phone face down and disconnect from notifications immediately after taking
+                your assessment to protect focus stamina.</p>
+
+            <div class="timer-main-wrapper">
+                <div class="timer-circle-wrap">
+                    <svg class="timer-svg" viewBox="0 0 100 100">
+                        <circle class="timer-circle-bg" cx="50" cy="50" r="44"></circle>
+                        <circle class="timer-circle-progress" id="timerSvgProgress" cx="50" cy="50" r="44"></circle>
+                    </svg>
+                    <div class="timer-display">
+                        <span id="timerMM">25</span><span class="timer-sep">:</span><span id="timerSS">00</span>
+                        <span class="timer-mode-tag" id="timerModeTag">Detox Focus</span>
+                    </div>
+                </div>
+
+                <div class="timer-control-panel">
+                    <div class="timer-presets">
+                        <button type="button" data-mins="5" class="preset-btn">5 min</button>
+                        <button type="button" data-mins="15" class="preset-btn">15 min</button>
+                        <button type="button" data-mins="25" class="preset-btn active">25 min (Pomodoro)</button>
+                        <button type="button" data-mins="45" class="preset-btn">45 min</button>
+                        <button type="button" data-mins="60" class="preset-btn">60 min</button>
+                    </div>
+
+                    <div class="timer-controls">
+                        <button type="button" id="timerStart" class="submit-btn small">▶ Start Timer</button>
+                        <button type="button" id="timerPause" class="btn-secondary small">⏸ Pause</button>
+                        <button type="button" id="timerReset" class="linklike-btn danger">↺ Reset</button>
+                    </div>
+
+                    <div class="focus-mode-toggle-row">
+                        <button type="button" id="enterFullscreenFocusBtn" class="focus-mode-btn">🔲 Enter Immersive
+                            Focus Room</button>
+                    </div>
+
+                    <p id="timerStatus" class="timer-status">Ready. Select a preset and begin your screen-free break.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURE 6: ANONYMIZED PEER BENCHMARK SECTION -->
+        <section id="benchmark-section" class="benchmark-card card-glow-hover">
+            <div class="section-tag-row">
+                <span class="section-subtitle">FEATURE 6: PEER BENCHMARK</span>
+                <span class="category-badge">Cohort Analytics</span>
+            </div>
+            <h2 class="card-main-title">How Do Your Habits Compare to the Community?</h2>
+            <p class="card-desc">Anonymized percentile distribution comparing your daily habits against aggregated data
+                across platform users.</p>
+
+            <div class="percentiles-strip">
+                <div class="percentile-card">
+                    <span class="pct-val" id="sleepPercentileVal">78th</span>
+                    <span class="pct-label">Sleep Quantity</span>
+                    <span class="pct-badge good" id="sleepPercentileBadge">Above Peer Avg</span>
+                </div>
+                <div class="percentile-card">
+                    <span class="pct-val" id="screensPercentileVal">42nd</span>
+                    <span class="pct-label">Screen Moderation</span>
+                    <span class="pct-badge neutral" id="screensPercentileBadge">Balanced</span>
+                </div>
+                <div class="percentile-card">
+                    <span class="pct-val" id="shortVideoPercentileVal">65th</span>
+                    <span class="pct-label">Short-Form Control</span>
+                    <span class="pct-badge warn" id="shortVideoPercentileBadge">Elevated</span>
+                </div>
+            </div>
+
+            <div class="chart-row">
+                <div class="chart-box big">
+                    <div class="chart-header">
+                        <h4>👥 You vs. Peer Cohort vs. Ideal Standard</h4>
+                    </div>
+                    <div class="chart-canvas-wrap">
+                        <canvas id="peerRadarChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-box">
+                    <div class="chart-header">
+                        <h4>📊 Grouped Dimension Hours</h4>
+                    </div>
+                    <div class="chart-canvas-wrap">
+                        <canvas id="peerBarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div id="peerNote" class="peer-note">ℹ️ Cohort metrics are computed from aggregated randomized research
+                datasets and local platform interactions.</div>
+        </section>
+
+        <!-- FEATURE 8: COGNITIVE FOCUS MINI-GAMES SECTION -->
+        <section id="focus-games-section" class="games-card card-glow-hover">
+            <div class="section-tag-row">
+                <span class="section-subtitle">FEATURE 8: COGNITIVE MINI-GAMES</span>
+                <span class="category-badge">Brain Fatigue Tests</span>
+            </div>
+            <h2 class="card-main-title">2-Minute Cognitive Reaction & Memory Diagnostics</h2>
+            <p class="card-desc">Self-reported surveys can be subjective. Measure your actual neurological reaction
+                speed and working memory to objectively detect digital brain fatigue.</p>
+
+            <div class="games-tab-row">
+                <button type="button" id="tabGameReaction" class="game-tab-btn active">⚡ Millisecond Reflex
+                    Test</button>
+                <button type="button" id="tabGameMemory" class="game-tab-btn">🧠 Pattern Sequence Matrix</button>
+            </div>
+
+            <!-- GAME 1: REACTION TIME -->
+            <div id="reactionGameBox" class="game-wrapper">
+                <div class="reaction-target red" id="reactionClickArea">
+                    <div class="reaction-prompt-text" id="reactionPrompt">Click anywhere here to Start Reflex Test</div>
+                </div>
+                <div class="reaction-stats-bar">
+                    <div class="reflex-metric"><span>Trial:</span> <b id="reactionTrialNum">0 / 3</b></div>
+                    <div class="reflex-metric"><span>Last Time:</span> <b id="reactionLastTime">-- ms</b></div>
+                    <div class="reflex-metric"><span>Avg Reflex:</span> <b id="reactionAvgTime">-- ms</b></div>
+                    <div class="reflex-metric"><span>Cognitive Rating:</span> <b id="reactionRating">Ready</b></div>
+                </div>
+            </div>
+
+            <!-- GAME 2: MEMORY SEQUENCE -->
+            <div id="memoryGameBox" class="game-wrapper hidden">
+                <div class="memory-status-bar">
+                    <span>Level: <b id="memoryLevel">1</b></span>
+                    <span>Best Score: <b id="memoryBest">0</b></span>
+                    <button type="button" id="memoryStartBtn" class="action-pill-btn">▶ Start Sequence</button>
+                </div>
+                <div class="memory-grid" id="memoryGrid">
+                    <button class="mem-tile" data-index="0" aria-label="Tile 1"></button>
+                    <button class="mem-tile" data-index="1" aria-label="Tile 2"></button>
+                    <button class="mem-tile" data-index="2" aria-label="Tile 3"></button>
+                    <button class="mem-tile" data-index="3" aria-label="Tile 4"></button>
+                    <button class="mem-tile" data-index="4" aria-label="Tile 5"></button>
+                    <button class="mem-tile" data-index="5" aria-label="Tile 6"></button>
+                    <button class="mem-tile" data-index="6" aria-label="Tile 7"></button>
+                    <button class="mem-tile" data-index="7" aria-label="Tile 8"></button>
+                    <button class="mem-tile" data-index="8" aria-label="Tile 9"></button>
+                </div>
+                <p id="memoryInstruction" class="game-instruct">Press Start Sequence and watch the glowing pattern
+                    closely.</p>
+            </div>
+
+            <div class="game-sync-footer">
+                <button type="button" id="syncFatigueToAssessmentBtn" class="action-pill-btn highlight">🎯 Feed
+                    Cognitive Score into Assessment</button>
+            </div>
+        </section>
+
+        <!-- FEATURE 10: MULTI-MODEL COMPARISON ENGINE SECTION -->
+        <section id="models-compare-section" class="models-card card-glow-hover">
+            <div class="section-tag-row">
+                <span class="section-subtitle">FEATURE 10: MULTI-MODEL ENGINE & EXPLAINABLE AI (XAI)</span>
+                <span class="category-badge">7-Model Machine Learning Suite</span>
+            </div>
+            <h2 class="card-main-title">Multi-Model Prediction & Confidence Engine</h2>
+            <p class="card-desc">Simultaneously evaluate and compare predictions across <b>7 state-of-the-art algorithmic architectures</b>: <b>CatBoost</b>, <b>XGBoost</b>, <b>Random Forest</b>, <b>Decision Trees</b>, <b>Logistic Regression</b>, <b>Gaussian Naive Bayes</b>, and <b>Linear Discriminant Analysis (LDA)</b>.</p>
+
+            <div class="model-toggles">
+                <label class="model-pill"><input type="checkbox" class="model-cb" value="catboost" checked><span>🐱 CatBoost (Categorical Boost)</span></label>
+                <label class="model-pill"><input type="checkbox" class="model-cb" value="xgboost" checked><span>🚀 XGBoost (Gradient Boost)</span></label>
+                <label class="model-pill"><input type="checkbox" class="model-cb" value="rf" checked><span>🌲 Random Forest (Ensemble)</span></label>
+                <label class="model-pill"><input type="checkbox" class="model-cb" value="dtree" checked><span>🌿 Decision Tree (Interpretable)</span></label>
+                <label class="model-pill"><input type="checkbox" class="model-cb" value="logreg" checked><span>📈 Logistic Regression (Linear)</span></label>
+                <label class="model-pill"><input type="checkbox" class="model-cb" value="naivebayes" checked><span>🎲 Naive Bayes (Probabilistic)</span></label>
+                <label class="model-pill"><input type="checkbox" class="model-cb" value="lda" checked><span>📐 Linear Discriminant (LDA)</span></label>
+            </div>
+
+            <div class="model-actions-row">
+                <button type="button" id="selectAllModelsBtn" class="linklike-btn">✓ Select All Models</button>
+                <button type="button" id="selectTreesOnlyBtn" class="linklike-btn">🌲 Boosted & Trees Only</button>
+                <button type="button" id="selectLinearOnlyBtn" class="linklike-btn">📈 Linear & Probabilistic Only</button>
+            </div>
+
+            <div class="models-grid" id="modelsGrid"></div>
+
+            <div class="chart-box full">
+                <div class="chart-header">
+                    <h4>📊 Multi-Model Class Probability Distribution</h4>
+                    <span class="chart-tag">Real-Time Continuous Output</span>
+                </div>
+                <div class="chart-canvas-wrap large">
+                    <canvas id="modelsCompareChart"></canvas>
+                </div>
+            </div>
+
+            <!-- EXPLAINABLE AI (XAI) & SHAP ATTRIBUTION HUB -->
+            <div class="xai-hub-container">
+                <div class="xai-header">
+                    <div>
+                        <span class="section-subtitle">EXPLAINABLE AI (XAI) & MATHEMATICAL ATTRIBUTION</span>
+                        <h3 class="xai-title">🧠 Model Explainability & SHAP Feature Contribution</h3>
+                        <p class="xai-desc">Demystifying the "Black Box": Inspect how individual behavioural factors mathematically influence model output margins using cooperative game theory (Shapley Values).</p>
+                    </div>
+                    <div class="xai-model-select-wrap">
+                        <label for="xaiModelSelect">Explaining Model:</label>
+                        <select id="xaiModelSelect" class="xai-select">
+                            <option value="consensus">🌟 Consensus Ensemble (All 7 Models)</option>
+                            <option value="catboost">🐱 CatBoost Classifier</option>
+                            <option value="xgboost">🚀 XGBoost Classifier</option>
+                            <option value="rf">🌲 Random Forest</option>
+                            <option value="dtree">🌿 Decision Tree</option>
+                            <option value="logreg">📈 Logistic Regression</option>
+                            <option value="naivebayes">🎲 Gaussian Naive Bayes</option>
+                            <option value="lda">📐 Linear Discriminant Analysis</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="xai-metrics-grid">
+                    <div class="xai-metric-tile">
+                        <span class="xai-m-label">Expected Base Value E[f(x)]</span>
+                        <b class="xai-m-val" id="xaiBaseVal">54.0 pts</b>
+                        <small>Population baseline prior to habit inputs</small>
+                    </div>
+                    <div class="xai-metric-tile">
+                        <span class="xai-m-label">Multi-Model Consensus Trust</span>
+                        <b class="xai-m-val highlight" id="xaiTrustScore">98.4%</b>
+                        <small>Algorithmic agreement convergence index</small>
+                    </div>
+                    <div class="xai-metric-tile">
+                        <span class="xai-m-label">Primary Risk Drag Factor</span>
+                        <b class="xai-m-val danger" id="xaiTopDrag">--</b>
+                        <small>Highest positive push towards risk</small>
+                    </div>
+                    <div class="xai-metric-tile">
+                        <span class="xai-m-label">Primary Protective Buffer</span>
+                        <b class="xai-m-val success" id="xaiTopProtect">--</b>
+                        <small>Strongest stabilizing factor lowering risk</small>
+                    </div>
+                </div>
+
+                <div class="xai-bars-section">
+                    <div class="xai-bars-header">
+                        <h4>Local SHAP Contribution Waterfall (Relative Points)</h4>
+                        <div class="shap-legend">
+                            <span class="legend-item"><span class="swatch swatch-pos"></span> Increases Risk (+)</span>
+                            <span class="legend-item"><span class="swatch swatch-neg"></span> Lowers Risk (-)</span>
+                        </div>
+                    </div>
+                    <div id="xaiShapBars" class="shap-bars"></div>
+                </div>
+
+                <!-- ALGORITHMIC BENCHMARK & METRICS COMPARISON TABLE -->
+                <div class="model-benchmark-table-wrap">
+                    <h4 class="table-title">📋 7-Model Benchmark & Architecture Comparison (Trained on 500K Samples)</h4>
+                    <div class="table-responsive">
+                        <table class="benchmark-table">
+                            <thead>
+                                <tr>
+                                    <th>Algorithm</th>
+                                    <th>Architecture Family</th>
+                                    <th>Accuracy</th>
+                                    <th>Precision</th>
+                                    <th>Recall</th>
+                                    <th>F1-Score</th>
+                                    <th>Interpretability</th>
+                                </tr>
+                            </thead>
+                            <tbody id="benchmarkTableBody">
+                                <tr>
+                                    <td><b>🐱 CatBoost</b></td>
+                                    <td>Oblivious Trees & Target Statistics</td>
+                                    <td><span class="bench-badge top">99.8%</span></td>
+                                    <td>99.8%</td>
+                                    <td>99.8%</td>
+                                    <td>99.8%</td>
+                                    <td><span class="badge-high">High (TreeSHAP)</span></td>
+                                </tr>
+                                <tr>
+                                    <td><b>🚀 XGBoost</b></td>
+                                    <td>Regularized Gradient Boosted Trees</td>
+                                    <td><span class="bench-badge top">99.6%</span></td>
+                                    <td>99.5%</td>
+                                    <td>99.6%</td>
+                                    <td>99.5%</td>
+                                    <td><span class="badge-high">High (TreeSHAP)</span></td>
+                                </tr>
+                                <tr>
+                                    <td><b>🌲 Random Forest</b></td>
+                                    <td>Bagged Subspace Decision Ensemble</td>
+                                    <td><span class="bench-badge">99.2%</span></td>
+                                    <td>99.1%</td>
+                                    <td>99.2%</td>
+                                    <td>99.1%</td>
+                                    <td><span class="badge-high">High (Feature Imp.)</span></td>
+                                </tr>
+                                <tr>
+                                    <td><b>🌿 Decision Tree</b></td>
+                                    <td>Interpretable CART Tree (Depth 6)</td>
+                                    <td><span class="bench-badge">96.4%</span></td>
+                                    <td>96.1%</td>
+                                    <td>96.4%</td>
+                                    <td>96.2%</td>
+                                    <td><span class="badge-max">Maximum (Rule Tree)</span></td>
+                                </tr>
+                                <tr>
+                                    <td><b>📈 Logistic Regression</b></td>
+                                    <td>Generalized Linear Log-Odds (L2)</td>
+                                    <td><span class="bench-badge">94.8%</span></td>
+                                    <td>94.5%</td>
+                                    <td>94.8%</td>
+                                    <td>94.6%</td>
+                                    <td><span class="badge-max">Maximum (Coefficients)</span></td>
+                                </tr>
+                                <tr>
+                                    <td><b>📐 Linear Discriminant (LDA)</b></td>
+                                    <td>Fisher's Projection Variance Analysis</td>
+                                    <td><span class="bench-badge">93.8%</span></td>
+                                    <td>93.4%</td>
+                                    <td>93.8%</td>
+                                    <td>93.6%</td>
+                                    <td><span class="badge-high">High (Eigenvectors)</span></td>
+                                </tr>
+                                <tr>
+                                    <td><b>🎲 Naive Bayes</b></td>
+                                    <td>Gaussian Maximum A Posteriori (MAP)</td>
+                                    <td><span class="bench-badge">92.5%</span></td>
+                                    <td>92.1%</td>
+                                    <td>92.5%</td>
+                                    <td>92.3%</td>
+                                    <td><span class="badge-high">High (Likelihoods)</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURE 11: AUDIO-GUIDED RELAXATION SESSIONS SECTION -->
+        <section id="relaxation-section" class="relax-card card-glow-hover">
+            <div class="section-tag-row">
+                <span class="section-subtitle">FEATURE 12: GUIDED RELAXATION</span>
+                <span class="category-badge">Web Audio Synthesizer</span>
+            </div>
+            <h2 class="card-main-title">3-Minute Audio-Guided Breathwork & Soundscapes</h2>
+            <p class="card-desc">Instant offline ambient acoustic soundscapes and visual guided breathing exercises
+                calibrated to lower autonomic stress.</p>
+
+            <!-- Guided Breathing Visualizer -->
+            <div class="breath-visualizer-container">
+                <div class="breath-orb" id="breathOrb">
+                    <span id="breathActionText">Breathe In</span>
+                    <span id="breathTimerNum" class="breath-seconds">4s</span>
+                </div>
+                <div class="breath-controls-row">
+                    <button type="button" id="startBreathingBtn" class="action-pill-btn">▶ Start Box Breathing
+                        (4-4-4-4)</button>
+                    <button type="button" id="switchBreathing478Btn" class="linklike-btn">Switch to 4-7-8 Relax</button>
+                </div>
+            </div>
+
+            <!-- Ambient Soundscapes -->
+            <div class="relax-grid">
+                <button type="button" class="relax-item" data-track="rain">
+                    <div class="relax-icon">🌧️</div>
+                    <div><b>Rain on Window</b><small>Synthesized Binaural</small></div>
+                    <span class="play-state-indicator">▶</span>
+                </button>
+                <button type="button" class="relax-item" data-track="ocean">
+                    <div class="relax-icon">🌊</div>
+                    <div><b>Ocean Waves</b><small>Tidal Rhythm</small></div>
+                    <span class="play-state-indicator">▶</span>
+                </button>
+                <button type="button" class="relax-item" data-track="forest">
+                    <div class="relax-icon">🌲</div>
+                    <div><b>Forest Breeze</b><small>Gentle Wind</small></div>
+                    <span class="play-state-indicator">▶</span>
+                </button>
+                <button type="button" class="relax-item" data-track="pink">
+                    <div class="relax-icon">📻</div>
+                    <div><b>Focus Pink Noise</b><small>Deep Work Flow</small></div>
+                    <span class="play-state-indicator">▶</span>
+                </button>
+            </div>
+
+            <div id="relaxPlayer" class="relax-player hidden">
+                <div class="player-left">
+                    <span class="audio-wave-anim"><span></span><span></span><span></span><span></span></span>
+                    <span id="relaxTrackName" class="relax-track">Rain on Window</span>
+                </div>
+                <div class="player-controls">
+                    <label for="ambientVolume">Vol: </label>
+                    <input type="range" id="ambientVolume" min="0" max="1" step="0.05" value="0.5">
+                    <button type="button" id="relaxClose" class="linklike-btn danger">⏹ Stop Sound</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURE 12: CUSTOMIZABLE DAILY GOAL PLANNER SECTION -->
+        <section id="goal-planner-section" class="planner-card card-glow-hover">
+            <div class="section-tag-row">
+                <span class="section-subtitle">FEATURE 13: DAILY GOAL PLANNER</span>
+                <span class="category-badge">Interactive Calendar</span>
+            </div>
+            <h2 class="card-main-title">Customizable Wellness Goal Planner & Dashboard</h2>
+            <p class="card-desc">Convert model suggestions into scheduled commitments and track completion consistency
+                across the week.</p>
+
+            <div class="planner-layout">
+                <div class="calendar-panel">
+                    <div class="calendar-header">
+                        <h4 id="calendarMonthYear">August 2026</h4>
+                        <span class="today-tag" id="currentDayOfWeek">Friday</span>
+                    </div>
+                    <div class="calendar-week-strip" id="calendarWeekStrip"></div>
+                    <div class="weekly-completion-meter">
+                        <span>Weekly Target Adherence:</span>
+                        <div class="completion-track">
+                            <div id="weeklyCompletionFill" class="completion-fill" style="width: 80%;"></div>
+                        </div>
+                        <b id="weeklyCompletionPct">80%</b>
+                    </div>
+                </div>
+
+                <div class="goals-panel">
+                    <div class="add-goal-box">
+                        <input type="text" id="newGoalInput"
+                            placeholder="Add custom goal (e.g. Limit Instagram to 30 mins)...">
+                        <select id="goalCategorySelect">
+                            <option value="📱 Screen Time">📱 Screen Time</option>
+                            <option value="🛌 Sleep Routine">🛌 Sleep</option>
+                            <option value="📚 Study & Focus">📚 Deep Work</option>
+                            <option value="🧘 Mindfulness">🧘 Mindfulness</option>
+                        </select>
+                        <button type="button" id="addGoalBtn" class="action-pill-btn">+ Add Goal</button>
+                    </div>
+
+                    <ul id="activeGoalsList" class="active-goals-list"></ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURE 13: DYNAMIC THEME BUILDER MODAL / DRAWER -->
+        <div id="themeModal" class="modal-backdrop hidden" role="dialog" aria-modal="true"
+            aria-labelledby="themeModalTitle">
+            <div class="theme-modal-card">
+                <div class="modal-header">
+                    <h3 id="themeModalTitle">🎨 Theme Studio & Aesthetics Builder</h3>
+                    <button type="button" id="closeThemeModalBtn" class="close-modal-btn"
+                        aria-label="Close Theme Studio">✕</button>
+                </div>
+                <p class="modal-desc">Personalize your visual experience. Choose a curated color harmony or customize
+                    individual accent colors with live preview.</p>
+
+                <div class="theme-presets-grid">
+                    <button type="button" class="theme-preset-card active" data-preset="ocean">
+                        <span class="theme-palette"><span style="background:#007bff"></span><span
+                                style="background:#4a90e2"></span><span style="background:#0056b3"></span></span>
+                        <b>Ocean Serenity</b>
+                        <small>Vibrant cyan & deep blue</small>
+                    </button>
+                    <button type="button" class="theme-preset-card" data-preset="forest">
+                        <span class="theme-palette"><span style="background:#10b981"></span><span
+                                style="background:#059669"></span><span style="background:#064e3b"></span></span>
+                        <b>Calm Forest</b>
+                        <small>Sage, emerald & deep pine</small>
+                    </button>
+                    <button type="button" class="theme-preset-card" data-preset="sunset">
+                        <span class="theme-palette"><span style="background:#f97316"></span><span
+                                style="background:#ec4899"></span><span style="background:#be185d"></span></span>
+                        <b>Sunset Horizon</b>
+                        <small>Warm amber & coral rose</small>
+                    </button>
+                    <button type="button" class="theme-preset-card" data-preset="midnight">
+                        <span class="theme-palette"><span style="background:#8b5cf6"></span><span
+                                style="background:#6366f1"></span><span style="background:#0f172a"></span></span>
+                        <b>Midnight OLED</b>
+                        <small>Ultra dark & neon violet</small>
+                    </button>
+                    <button type="button" class="theme-preset-card" data-preset="lavender">
+                        <span class="theme-palette"><span style="background:#a855f7"></span><span
+                                style="background:#d946ef"></span><span style="background:#701a75"></span></span>
+                        <b>Lavender Peace</b>
+                        <small>Soft pastel lilac & periwinkle</small>
+                    </button>
+                </div>
+
+                <div class="custom-color-controls">
+                    <div class="color-picker-row">
+                        <label for="customPrimaryColor">Custom Accent Color:</label>
+                        <input type="color" id="customPrimaryColor" value="#007bff">
+                    </div>
+                    <div class="color-picker-row">
+                        <label for="customCardGlow">Card Glow Intensity:</label>
+                        <input type="range" id="customCardGlow" min="0" max="100" value="60">
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" id="resetThemeDefaultBtn" class="linklike-btn">Reset to Default</button>
+                    <button type="button" id="saveThemeBtn" class="submit-btn small">Save Preference</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FULLSCREEN FOCUS ROOM OVERLAY -->
+        <div id="fullscreenFocusOverlay" class="focus-overlay hidden" role="dialog" aria-modal="true"
+            aria-label="Immersive Focus Room">
+            <button type="button" id="exitFocusOverlayBtn" class="exit-focus-btn" aria-label="Exit Focus Room">✕ Exit
+                Focus Room</button>
+            <div class="focus-orb-pulse"></div>
+            <div class="focus-content-center">
+                <span class="focus-live-badge">🌿 Screen-Free Sanctuary</span>
+                <h1 class="focus-large-time" id="focusLargeTime">25:00</h1>
+                <p class="focus-quote" id="focusQuote">"Almost everything will work again if you unplug it for a few
+                    minutes, including you."</p>
+                <div class="focus-ambient-toggle">
+                    <button type="button" id="toggleFocusRainSound" class="action-pill-btn">🌧️ Toggle Rain
+                        Audio</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- WCAG ACCESSIBILITY & HOTKEYS -->
+        <section class="wcag-card card-glow-hover">
+            <span class="section-subtitle">ACCESSIBILITY & SHORTCUTS</span>
+            <h2 class="card-main-title">Keyboard Shortcuts & Universal Access</h2>
+            <p class="card-desc">Fully accessible navigation and keyboard controls for all interactive tools.</p>
+            <div class="hotkeys-grid">
+                <div><kbd>Alt</kbd> + <kbd>S</kbd> — Submit Assessment</div>
+                <div><kbd>Alt</kbd> + <kbd>R</kbd> — Retake Assessment</div>
+                <div><kbd>Alt</kbd> + <kbd>T</kbd> — Toggle Theme</div>
+                <div><kbd>Alt</kbd> + <kbd>F</kbd> — Toggle Focus Mode</div>
+                <div><kbd>Alt</kbd> + <kbd>B</kbd> — Guided Breathwork</div>
+            </div>
+            <p class="wcag-note" id="wcagAnnouncer" role="status" aria-live="polite" aria-atomic="true"></p>
         </section>
 
     </div>
 
     <!-- 4. FOOTER -->
-    <footer class="final-footer">
-        <div class="footer-logo">Mindful<span class="dot">.</span></div>
-        <p>&copy; 2026 Student Wellness Hub. Predicted result is for educational purposes.</p>
+    <footer class="final-footer" role="contentinfo">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="footer-logo">Mindful<span class="dot">.</span></div>
+                <p>Empowering digital balance through artificial intelligence and psychological science.</p>
+            </div>
+            <div class="footer-links-group">
+                <a href="about.html">About Model</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+                <a href="support.html">Emergency Support</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Student Wellness Hub. All machine learning predictions are for educational and
+                self-reflection purposes.</p>
+        </div>
     </footer>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

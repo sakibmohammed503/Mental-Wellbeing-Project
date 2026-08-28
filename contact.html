@@ -11,16 +11,21 @@
 <body>
 
     <!-- NAVBAR -->
-    <header class="navbar">
-        <div class="logo">Mindful<span class="dot">.</span></div>
-        <nav class="nav-links">
+    <header class="navbar" role="banner">
+        <div class="navbar-left">
+            <a href="index.html" class="logo" aria-label="Mindful Home">Mindful<span class="dot">.</span></a>
+        </div>
+        <nav class="nav-links" aria-label="Main Navigation">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="services.html">Services</a>
-            <a href="contact.html">Contact</a>
+            <a href="contact.html" class="active">Contact</a>
         </nav>
-        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle dark mode">🌙</button>
-        <a href="support.html" class="nav-btn">Support Center</a>
+        <div class="navbar-right">
+            <button id="themeCustomizerBtn" class="theme-customizer-btn" title="Open Theme Studio" aria-label="Open Theme Studio">🎨 Theme</button>
+            <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle dark/light mode" title="Toggle Mode">🌙</button>
+            <a href="support.html" class="nav-btn">Support Center</a>
+        </div>
     </header>
 
     <!-- PAGE TITLE -->
