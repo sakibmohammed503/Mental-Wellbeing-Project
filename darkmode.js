@@ -202,5 +202,21 @@
         if (existingModal) {
             bindThemeModalEvents(existingModal);
         }
+
+        // Global Alt + T Shortcut for Theme Toggle across all pages
+        document.addEventListener("keydown", function (e) {
+            if (e.altKey && ((e.key && e.key.toLowerCase() === "t") || e.code === "KeyT")) {
+                e.preventDefault();
+                if (toggleBtn) {
+                    toggleBtn.click();
+                } else {
+                    const isDark = document.body.classList.contains("dark-mode");
+                    const newMode = isDark ? "light" : "dark";
+                    applyThemeMode(newMode);
+                    localStorage.setItem(THEME_MODE_KEY, newMode);
+                    window.dispatchEvent(new CustomEvent("themechange", { detail: { theme: newMode } }));
+                }
+            }
+        });
     });
 })();

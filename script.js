@@ -2175,7 +2175,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (restartBtn) {
         restartBtn.addEventListener("click", function () {
             if (resultBox) resultBox.classList.add("hidden");
-            if (formScreen) formScreen.classList.remove("hidden");
+            if (formScreen) {
+                formScreen.classList.remove("hidden");
+                formScreen.scrollIntoView({ behavior: "smooth" });
+                const firstInput = document.getElementById("socialHours");
+                if (firstInput) setTimeout(function () { firstInput.focus(); }, 300);
+            }
         });
     }
 
@@ -2257,22 +2262,166 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Keyboard Shortcuts
-    document.addEventListener("keydown", function (e) {
-        if (e.altKey && e.key.toLowerCase() === "s") {
-            e.preventDefault();
-            if (predictionForm) predictionForm.dispatchEvent(new Event("submit"));
-        } else if (e.altKey && e.key.toLowerCase() === "r") {
-            e.preventDefault();
-            if (restartBtn) restartBtn.click();
-        } else if (e.altKey && e.key.toLowerCase() === "f") {
-            e.preventDefault();
-            const btn = document.getElementById("enterFullscreenFocusBtn");
-            if (btn) btn.click();
-        } else if (e.altKey && e.key.toLowerCase() === "b") {
-            e.preventDefault();
-            if (startBreathingBtn) startBreathingBtn.click();
+    // Hotkey Action Dispatcher & Feedback
+    const triggerHotkeyFeedback = function (keyChar, message) {
+        const announcer = document.getElementById("wcagAnnouncer");
+        if (announcer) {
+            announcer.textContent = "⚡ " + message;
+            announcer.style.opacity = "1";
         }
+
+        const badge = document.querySelector('.hotkey-badge[data-hotkey="' + keyChar + '"]');
+        if (badge) {
+            badge.classList.add("hotkey-active");
+            setTimeout(function () { badge.classList.remove("hotkey-active"); }, 600);
+        }
+
+        let toast = document.getElementById("hotkeyHudToast");
+        if (!toast) {
+            toast = document.createElement("div");
+            toast.id = "hotkeyHudToast";
+            toast.className = "hotkey-hud-toast";
+            document.body.appendChild(toast);
+        }
+        toast.innerHTML = '<span style="font-size:1.2em">⚡</span> <span><b>Alt + ' + keyChar.toUpperCase() + '</b>: ' + message + '</span>';
+        toast.classList.add("show");
+        if (toast._timer) clearTimeout(toast._timer);
+        toast._timer = setTimeout(function () {
+            toast.classList.remove("show");
+        }, 2200);
+    };
+
+    const executeHotkeyAction = function (keyChar) {
+        keyChar = keyChar.toLowerCase();
+        if (keyChar === "s") {
+            // Alt + S: Submit Assessment
+            if (formScreen && formScreen.classList.contains("hidden")) {
+                formScreen.classList.remove("hidden");
+                if (resultBox) resultBox.classList.add("hidden");
+            }
+            const analyzeBtn = document.getElementById("analyzeSubmitBtn");
+            if (analyzeBtn) {
+                analyzeBtn.click();
+            } else if (predictionForm) {
+                if (typeof predictionForm.requestSubmit === "function") {
+                    predictionForm.requestSubmit();
+                } else {
+                    predictionForm.dispatchEvent(new Event("submit", { cancelable: true }));
+                }
+            }
+            triggerHotkeyFeedback("s", "Assessment Submitted & Analyzed");
+        } else if (keyChar === "r") {
+            // Alt + R: Retake Assessment
+            if (resultBox) resultBox.classList.add("hidden");
+            if (formScreen) {
+                formScreen.classList.remove("hidden");
+                formScreen.scrollIntoView({ behavior: "smooth" });
+                const firstInput = document.getElementById("socialHours");
+                if (firstInput) setTimeout(function () { firstInput.focus(); }, 300);
+            }
+            triggerHotkeyFeedback("r", "Assessment Reset (Ready for input)");
+        } else if (keyChar === "t") {
+            // Alt + T: Toggle Theme
+            const themeBtn = document.getElementById("themeToggleBtn");
+            if (themeBtn) {
+                themeBtn.click();
+            } else {
+                const isDark = document.body.classList.contains("dark-mode");
+                const newMode = isDark ? "light" : "dark";
+                if (newMode === "dark") {
+                    document.body.classList.add("dark-mode");
+                    document.documentElement.classList.add("dark-mode");
+                } else {
+                    document.body.classList.remove("dark-mode");
+                    document.documentElement.classList.remove("dark-mode");
+                }
+                localStorage.setItem("mindful-theme", newMode);
+                window.dispatchEvent(new CustomEvent("themechange", { detail: { theme: newMode } }));
+            }
+            const isDarkNow = document.body.classList.contains("dark-mode");
+            triggerHotkeyFeedback("t", isDarkNow ? "Switched to Dark Theme 🌙" : "Switched to Light Theme ☀️");
+        } else if (keyChar === "f") {
+            // Alt + F: Toggle Focus Mode Overlay
+            const fOverlay = document.getElementById("focusOverlay");
+            const enterBtn = document.getElementById("enterFullscreenFocusBtn");
+            const exitBtn = document.getElementById("exitFocusOverlayBtn");
+            if (fOverlay && !fOverlay.classList.contains("hidden")) {
+                if (exitBtn) {
+                    exitBtn.click();
+                } else {
+                    fOverlay.classList.add("hidden");
+                    pauseDetoxTimer();
+                }
+                triggerHotkeyFeedback("f", "Focus Mode Closed ✕");
+            } else {
+                if (enterBtn) {
+                    enterBtn.click();
+                } else if (fOverlay) {
+                    fOverlay.classList.remove("hidden");
+                    startDetoxTimer();
+                }
+                triggerHotkeyFeedback("f", "Focus Mode Activated ⏱️");
+            }
+        } else if (keyChar === "b") {
+            // Alt + B: Guided Breathwork
+            const relaxSec = document.getElementById("relaxation-section");
+            if (relaxSec) {
+                relaxSec.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+            const bBtn = document.getElementById("startBreathingBtn");
+            if (bBtn) {
+                bBtn.click();
+            }
+            triggerHotkeyFeedback("b", isBreathingActive ? "Guided Breathwork Started 🫁" : "Guided Breathwork Stopped ⏹");
+        }
+    };
+
+    // Keyboard Shortcuts (Cross-browser, cross-layout compatible)
+    document.addEventListener("keydown", function (e) {
+        if (!e.altKey) {
+            // Accessibility: Escape closes modal or focus overlay
+            if (e.key === "Escape") {
+                const fOverlay = document.getElementById("focusOverlay");
+                if (fOverlay && !fOverlay.classList.contains("hidden")) {
+                    const exitBtn = document.getElementById("exitFocusOverlayBtn");
+                    if (exitBtn) exitBtn.click();
+                    else fOverlay.classList.add("hidden");
+                }
+                const tModal = document.getElementById("themeModal");
+                if (tModal && !tModal.classList.contains("hidden")) {
+                    tModal.classList.add("hidden");
+                }
+            }
+            return;
+        }
+
+        const k = (e.key || "").toLowerCase();
+        const code = e.code || "";
+
+        if (k === "s" || code === "KeyS") {
+            e.preventDefault();
+            executeHotkeyAction("s");
+        } else if (k === "r" || code === "KeyR") {
+            e.preventDefault();
+            executeHotkeyAction("r");
+        } else if (k === "t" || code === "KeyT") {
+            e.preventDefault();
+            executeHotkeyAction("t");
+        } else if (k === "f" || code === "KeyF") {
+            e.preventDefault();
+            executeHotkeyAction("f");
+        } else if (k === "b" || code === "KeyB") {
+            e.preventDefault();
+            executeHotkeyAction("b");
+        }
+    });
+
+    // Enable direct clicking on hotkey badges in the accessibility card
+    document.querySelectorAll(".hotkey-badge").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            const hotkey = btn.getAttribute("data-hotkey");
+            if (hotkey) executeHotkeyAction(hotkey);
+        });
     });
 
     // Timer Controls Bindings
