@@ -806,29 +806,46 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ==========================================
-    // 6. FEATURE 4: TAILORED MICRO-HABIT GENERATOR
+    // 6. FEATURE 4: PERSONALIZED DAILY HABITS & GOAL PLANNER (MERGED)
     // ==========================================
-    const defaultChallenges = [
-        { id: "h1", text: "🌙 No screens 30 minutes before bed", impact: "+8 pts", category: "Sleep", completed: false },
-        { id: "h2", text: "⏳ Limit short-form videos (Reels/TikTok) to 20 mins", impact: "+6 pts", category: "Focus", completed: false },
-        { id: "h3", text: "☀️ 10-minute morning outdoor walk without phone", impact: "+7 pts", category: "Mindfulness", completed: false },
-        { id: "h4", text: "📚 25-minute Pomodoro deep study block", impact: "+5 pts", category: "Study", completed: false }
+    const defaultHabitsAndGoals = [
+        { id: "hg_1", text: "🌙 Screen-free 30 mins before sleep", category: "🛌 Sleep Routine", impact: "+8 pts", completed: false },
+        { id: "hg_2", text: "⏳ Limit TikTok/Reels to under 30 mins", category: "📱 Screen Time", impact: "+7 pts", completed: true },
+        { id: "hg_3", text: "📚 Complete 1 Pomodoro deep work block", category: "📚 Study & Focus", impact: "+6 pts", completed: false },
+        { id: "hg_4", text: "☀️ 10-minute morning outdoor walk without phone", category: "🧘 Mindfulness", impact: "+5 pts", completed: false }
     ];
 
-    const getStoredHabits = function () {
+    const getStoredHabitsAndGoals = function () {
         try {
-            return JSON.parse(localStorage.getItem(STORAGE_KEYS.HABITS)) || defaultChallenges;
+            const habits = JSON.parse(localStorage.getItem(STORAGE_KEYS.HABITS));
+            if (habits && Array.isArray(habits) && habits.length > 0) {
+                return habits.map(function (item) {
+                    if (!item.category) item.category = "⚡ Micro-Habit";
+                    if (!item.impact) item.impact = "+5 pts";
+                    return item;
+                });
+            }
+            const goals = JSON.parse(localStorage.getItem(STORAGE_KEYS.GOALS));
+            if (goals && Array.isArray(goals) && goals.length > 0) {
+                return goals.map(function (item) {
+                    if (!item.impact) item.impact = "+6 pts";
+                    return item;
+                });
+            }
+            return defaultHabitsAndGoals;
         } catch (_) {
-            return defaultChallenges;
+            return defaultHabitsAndGoals;
         }
     };
 
-    const renderMicroHabitsUI = function () {
-        const habits = getStoredHabits();
+    const renderHabitsAndGoalsUI = function () {
+        const habits = getStoredHabitsAndGoals();
         const list = document.getElementById("microHabitsList");
         const progressFill = document.getElementById("habitProgress");
         const progressText = document.getElementById("habitProgressText");
         const streakEl = document.getElementById("habitStreakCount");
+        const weeklyFill = document.getElementById("weeklyCompletionFill");
+        const weeklyPctEl = document.getElementById("weeklyCompletionPct");
 
         const completedCount = habits.filter(function (h) { return h.completed; }).length;
         const total = habits.length;
@@ -837,22 +854,68 @@ document.addEventListener("DOMContentLoaded", function () {
         if (progressFill) progressFill.style.width = pct + "%";
         if (progressText) progressText.textContent = completedCount + " / " + total + " Completed Today (" + pct + "%)";
 
+        // Calculate dynamic weekly adherence
+        const baseWeekly = 65;
+        const weeklyScore = Math.min(100, Math.round(baseWeekly + (pct * 0.35)));
+        if (weeklyFill) weeklyFill.style.width = weeklyScore + "%";
+        if (weeklyPctEl) weeklyPctEl.textContent = weeklyScore + "%";
+
         const streak = Number(localStorage.getItem(STORAGE_KEYS.STREAK) || 3);
         if (streakEl) streakEl.textContent = streak;
 
+        // Render Calendar Panel & Week Strip
+        const monthYearEl = document.getElementById("calendarMonthYear");
+        const dayOfWeekEl = document.getElementById("currentDayOfWeek");
+        const strip = document.getElementById("calendarWeekStrip");
+
+        const now = new Date();
+        const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        if (monthYearEl) {
+            monthYearEl.textContent = months[now.getMonth()] + " " + now.getFullYear();
+        }
+        if (dayOfWeekEl) {
+            dayOfWeekEl.textContent = days[now.getDay()];
+        }
+
+        if (strip) {
+            const todayIdx = now.getDay();
+            const currDate = now.getDate();
+            const firstDayOfWeek = new Date(now);
+            firstDayOfWeek.setDate(currDate - todayIdx);
+
+            strip.innerHTML = days.map(function (d, i) {
+                const dayDate = new Date(firstDayOfWeek);
+                dayDate.setDate(firstDayOfWeek.getDate() + i);
+                const isToday = i === todayIdx;
+                const isPastOrToday = i <= todayIdx;
+                return '<div class="cal-day-cell ' + (isToday ? "today" : "") + '" title="' + d + ', ' + dayDate.toLocaleDateString() + '">' +
+                    '<span>' + d + '</span>' +
+                    '<span class="cal-day-num">' + dayDate.getDate() + '</span>' +
+                    (isPastOrToday ? '<span class="cal-dot"></span>' : '') +
+                    '</div>';
+            }).join("");
+        }
+
         if (list) {
+            if (habits.length === 0) {
+                list.innerHTML = '<li class="empty-list-placeholder">No active goals or habits yet. Add one above or auto-generate from your assessment!</li>';
+                return;
+            }
+
             list.innerHTML = habits.map(function (h) {
                 return '<li class="habit-item-card ' + (h.completed ? "completed" : "") + '" data-id="' + h.id + '">' +
                     '<div class="habit-left">' +
                     '<input type="checkbox" class="habit-checkbox" ' + (h.completed ? "checked" : "") + ' aria-label="' + h.text + '">' +
                     '<div class="habit-info">' +
-                    '<h5>' + h.text + '</h5>' +
-                    '<p>Category: ' + h.category + '</p>' +
+                    '<h5 style="' + (h.completed ? "text-decoration:line-through;opacity:0.75;" : "") + '">' + h.text + '</h5>' +
                     '</div>' +
                     '</div>' +
                     '<div class="habit-right">' +
-                    '<span class="habit-impact-tag">' + h.impact + '</span>' +
-                    '<button type="button" class="habit-delete-btn" data-id="' + h.id + '" title="Remove challenge" aria-label="Delete challenge">✕</button>' +
+                    '<span class="goal-category-tag">' + (h.category || "⚡ Micro-Habit") + '</span>' +
+                    '<span class="habit-impact-tag">' + (h.impact || "+5 pts") + '</span>' +
+                    '<button type="button" class="habit-delete-btn" data-id="' + h.id + '" title="Remove item" aria-label="Delete item">✕</button>' +
                     '</div>' +
                     '</li>';
             }).join("");
@@ -861,12 +924,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 cb.addEventListener("change", function (e) {
                     const card = e.target.closest(".habit-item-card");
                     const id = card.getAttribute("data-id");
-                    const currentHabits = getStoredHabits();
+                    const currentHabits = getStoredHabitsAndGoals();
                     const target = currentHabits.find(function (h) { return h.id === id; });
                     if (target) {
                         target.completed = e.target.checked;
                         localStorage.setItem(STORAGE_KEYS.HABITS, JSON.stringify(currentHabits));
-                        renderMicroHabitsUI();
+                        renderHabitsAndGoalsUI();
                     }
                 });
             });
@@ -875,10 +938,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 btn.addEventListener("click", function (e) {
                     e.stopPropagation();
                     const id = btn.getAttribute("data-id");
-                    let currentHabits = getStoredHabits();
+                    let currentHabits = getStoredHabitsAndGoals();
                     currentHabits = currentHabits.filter(function (h) { return h.id !== id; });
                     localStorage.setItem(STORAGE_KEYS.HABITS, JSON.stringify(currentHabits));
-                    renderMicroHabitsUI();
+                    renderHabitsAndGoalsUI();
                 });
             });
         }
@@ -886,6 +949,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const addCustomHabitBtn = document.getElementById("addCustomHabitBtn");
     const customHabitInput = document.getElementById("customHabitInput");
+    const goalCategorySelect = document.getElementById("goalCategorySelect");
 
     const handleAddCustomHabit = function () {
         if (!customHabitInput) return;
@@ -894,17 +958,23 @@ document.addEventListener("DOMContentLoaded", function () {
             customHabitInput.focus();
             return;
         }
-        const habits = getStoredHabits();
+        const category = goalCategorySelect ? goalCategorySelect.value : "⚡ Micro-Habit";
+        let impact = "+5 pts";
+        if (category.indexOf("Sleep") !== -1) impact = "+8 pts";
+        else if (category.indexOf("Screen") !== -1) impact = "+7 pts";
+        else if (category.indexOf("Study") !== -1) impact = "+6 pts";
+
+        const habits = getStoredHabitsAndGoals();
         habits.push({
-            id: "h_" + Date.now(),
+            id: "hg_" + Date.now(),
             text: val,
-            impact: "+5 pts",
-            category: "Custom",
+            category: category,
+            impact: impact,
             completed: false
         });
         localStorage.setItem(STORAGE_KEYS.HABITS, JSON.stringify(habits));
         customHabitInput.value = "";
-        renderMicroHabitsUI();
+        renderHabitsAndGoalsUI();
     };
 
     if (addCustomHabitBtn) {
@@ -924,15 +994,68 @@ document.addEventListener("DOMContentLoaded", function () {
         refreshHabitsBtn.addEventListener("click", function () {
             const d = lastAssessmentData || collectUserData();
             const newChallenges = [];
-            if (d.late_night_usage === "Often") newChallenges.push({ id: "h_" + Date.now() + "_1", text: "🌙 Enforce 45-min pre-bed blue light curfew", impact: "+9 pts", category: "Sleep", completed: false });
-            if (d.short_video_hours >= 2) newChallenges.push({ id: "h_" + Date.now() + "_2", text: "⏳ 15-min hard app timer on TikTok/Reels", impact: "+8 pts", category: "Focus", completed: false });
-            if (d.sleep_hours < 7) newChallenges.push({ id: "h_" + Date.now() + "_3", text: "🛌 8-hour sleep block tonight", impact: "+10 pts", category: "Sleep", completed: false });
-            if (d.digital_addiction_score >= 6) newChallenges.push({ id: "h_" + Date.now() + "_4", text: "📵 1-hour grey-scale phone detox window", impact: "+7 pts", category: "Mindfulness", completed: false });
+            if (d.late_night_usage === "Often") newChallenges.push({ id: "hg_" + Date.now() + "_1", text: "🌙 Enforce 45-min pre-bed blue light curfew", category: "🛌 Sleep Routine", impact: "+9 pts", completed: false });
+            if (d.short_video_hours >= 1.5) newChallenges.push({ id: "hg_" + Date.now() + "_2", text: "⏳ 15-min hard app timer on TikTok/Reels", category: "📱 Screen Time", impact: "+8 pts", completed: false });
+            if (d.sleep_hours < 7) newChallenges.push({ id: "hg_" + Date.now() + "_3", text: "🛌 8-hour uninterrupted sleep block tonight", category: "🛌 Sleep Routine", impact: "+10 pts", completed: false });
+            if (d.digital_addiction_score >= 6) newChallenges.push({ id: "hg_" + Date.now() + "_4", text: "📵 1-hour grey-scale phone detox window", category: "🧘 Mindfulness", impact: "+7 pts", completed: false });
             if (newChallenges.length < 3) {
-                newChallenges.push({ id: "h_" + Date.now() + "_5", text: "📚 25-minute distraction-free deep work session", impact: "+6 pts", category: "Study", completed: false });
+                newChallenges.push({ id: "hg_" + Date.now() + "_5", text: "📚 25-minute Pomodoro deep focus session", category: "📚 Study & Focus", impact: "+6 pts", completed: false });
+                newChallenges.push({ id: "hg_" + Date.now() + "_6", text: "☀️ 10-minute morning outdoor walk without phone", category: "🧘 Mindfulness", impact: "+5 pts", completed: false });
             }
             localStorage.setItem(STORAGE_KEYS.HABITS, JSON.stringify(newChallenges));
-            renderMicroHabitsUI();
+            renderHabitsAndGoalsUI();
+        });
+    }
+
+    const syncToGoalPlannerBtn = document.getElementById("syncToGoalPlannerBtn");
+    if (syncToGoalPlannerBtn) {
+        syncToGoalPlannerBtn.addEventListener("click", function () {
+            const d = lastAssessmentData || collectUserData();
+            const habits = getStoredHabitsAndGoals();
+            let addedCount = 0;
+
+            const pushIfMissing = function (text, category, impact) {
+                const exists = habits.some(function (h) { return h.text.toLowerCase() === text.toLowerCase(); });
+                if (!exists) {
+                    habits.unshift({
+                        id: "hg_" + Date.now() + "_" + Math.random().toString(36).substr(2, 4),
+                        text: text,
+                        category: category,
+                        impact: impact,
+                        completed: false
+                    });
+                    addedCount++;
+                }
+            };
+
+            if (d.sleep_hours < 7) {
+                pushIfMissing("🛌 Complete an 8-hour sleep block tonight", "🛌 Sleep Routine", "+10 pts");
+            }
+            if (d.short_video_hours >= 1.5) {
+                pushIfMissing("⏳ Limit short-form videos to under 30 mins", "📱 Screen Time", "+8 pts");
+            }
+            if (d.late_night_usage === "Often") {
+                pushIfMissing("🌙 Screen-free 45 mins before bedtime", "🛌 Sleep Routine", "+9 pts");
+            }
+            if (d.study_hours < 3) {
+                pushIfMissing("📚 Complete 2 Pomodoro focus study blocks", "📚 Study & Focus", "+7 pts");
+            }
+
+            if (addedCount === 0) {
+                pushIfMissing("🧘 10-minute mindfulness breathwork break", "🧘 Mindfulness", "+6 pts");
+            }
+
+            localStorage.setItem(STORAGE_KEYS.HABITS, JSON.stringify(habits));
+            renderHabitsAndGoalsUI();
+
+            const targetSection = document.getElementById("habits-goals-section");
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: "smooth" });
+                targetSection.classList.add("highlight-pulse");
+                setTimeout(function () {
+                    targetSection.classList.remove("highlight-pulse");
+                }, 1600);
+            }
         });
     }
 
@@ -1914,146 +2037,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // ==========================================
-    // 15. FEATURE 12: DAILY GOAL PLANNER
-    // ==========================================
-    const defaultGoals = [
-        { id: "g1", text: "Screen-free 30 mins before sleep", category: "🛌 Sleep Routine", completed: false },
-        { id: "g2", text: "Limit TikTok/Reels to under 30 mins", category: "📱 Screen Time", completed: true },
-        { id: "g3", text: "Complete 1 Pomodoro deep work block", category: "📚 Study & Focus", completed: false }
-    ];
 
-    const getStoredGoals = function () {
-        try {
-            return JSON.parse(localStorage.getItem(STORAGE_KEYS.GOALS)) || defaultGoals;
-        } catch (_) {
-            return defaultGoals;
-        }
-    };
-
-    const renderGoalsUI = function () {
-        const goals = getStoredGoals();
-        const list = document.getElementById("activeGoalsList");
-        const fill = document.getElementById("weeklyCompletionFill");
-        const pctEl = document.getElementById("weeklyCompletionPct");
-
-        const completed = goals.filter(function (g) { return g.completed; }).length;
-        const total = goals.length;
-        const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
-
-        if (fill) fill.style.width = pct + "%";
-        if (pctEl) pctEl.textContent = pct + "%";
-
-        if (list) {
-            list.innerHTML = goals.map(function (g) {
-                return '<li class="goal-card-item ' + (g.completed ? "completed" : "") + '" data-id="' + g.id + '">' +
-                    '<div class="goal-left">' +
-                    '<input type="checkbox" class="goal-checkbox" ' + (g.completed ? "checked" : "") + ' data-id="' + g.id + '">' +
-                    '<span style="' + (g.completed ? "text-decoration:line-through;color:var(--text-muted);opacity:0.75;" : "font-weight:600;") + '">' + g.text + '</span>' +
-                    '</div>' +
-                    '<div class="goal-right">' +
-                    '<span class="goal-category-tag">' + g.category + '</span>' +
-                    '<button type="button" class="goal-delete-btn" data-id="' + g.id + '" title="Remove goal" aria-label="Delete goal">✕</button>' +
-                    '</div>' +
-                    '</li>';
-            }).join("");
-
-            list.querySelectorAll(".goal-checkbox").forEach(function (cb) {
-                cb.addEventListener("change", function (e) {
-                    const id = e.target.getAttribute("data-id");
-                    const currentGoals = getStoredGoals();
-                    const target = currentGoals.find(function (g) { return g.id === id; });
-                    if (target) {
-                        target.completed = e.target.checked;
-                        localStorage.setItem(STORAGE_KEYS.GOALS, JSON.stringify(currentGoals));
-                        renderGoalsUI();
-                    }
-                });
-            });
-
-            list.querySelectorAll(".goal-delete-btn").forEach(function (btn) {
-                btn.addEventListener("click", function (e) {
-                    e.stopPropagation();
-                    const id = btn.getAttribute("data-id");
-                    let currentGoals = getStoredGoals();
-                    currentGoals = currentGoals.filter(function (g) { return g.id !== id; });
-                    localStorage.setItem(STORAGE_KEYS.GOALS, JSON.stringify(currentGoals));
-                    renderGoalsUI();
-                });
-            });
-        }
-
-        // Render Calendar Week Strip
-        const strip = document.getElementById("calendarWeekStrip");
-        if (strip) {
-            const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-            const todayIdx = new Date().getDay();
-            strip.innerHTML = days.map(function (d, i) {
-                const isToday = i === todayIdx;
-                return '<div class="cal-day-cell ' + (isToday ? "today" : "") + '">' +
-                    '<span>' + d + '</span>' +
-                    '<span class="cal-day-num">' + (22 + i) + '</span>' +
-                    (i <= todayIdx ? '<span class="cal-dot"></span>' : '') +
-                    '</div>';
-            }).join("");
-        }
-    };
-
-    const addGoalBtn = document.getElementById("addGoalBtn");
-    const newGoalInput = document.getElementById("newGoalInput");
-    const goalCategorySelect = document.getElementById("goalCategorySelect");
-
-    const handleAddNewGoal = function () {
-        if (!newGoalInput) return;
-        const text = newGoalInput.value.trim();
-        if (!text) {
-            newGoalInput.focus();
-            return;
-        }
-        const goals = getStoredGoals();
-        goals.push({
-            id: "g_" + Date.now(),
-            text: text,
-            category: goalCategorySelect ? goalCategorySelect.value : "📱 Screen Time",
-            completed: false
-        });
-        localStorage.setItem(STORAGE_KEYS.GOALS, JSON.stringify(goals));
-        newGoalInput.value = "";
-        renderGoalsUI();
-    };
-
-    if (addGoalBtn) {
-        addGoalBtn.addEventListener("click", handleAddNewGoal);
-    }
-    if (newGoalInput) {
-        newGoalInput.addEventListener("keydown", function (e) {
-            if (e.key === "Enter") {
-                e.preventDefault();
-                handleAddNewGoal();
-            }
-        });
-    }
-
-    const syncToGoalPlannerBtn = document.getElementById("syncToGoalPlannerBtn");
-    if (syncToGoalPlannerBtn) {
-        syncToGoalPlannerBtn.addEventListener("click", function () {
-            const goals = getStoredGoals();
-            const d = lastAssessmentData || collectUserData();
-            if (d.sleep_hours < 7) {
-                goals.push({ id: "g_" + Date.now() + "_s", text: "Sleep by 11:00 PM tonight", category: "🛌 Sleep Routine", completed: false });
-            }
-            if (d.short_video_hours >= 1.5) {
-                goals.push({ id: "g_" + Date.now() + "_v", text: "Limit short video bingeing to 30 mins", category: "📱 Screen Time", completed: false });
-            }
-            localStorage.setItem(STORAGE_KEYS.GOALS, JSON.stringify(goals));
-            renderGoalsUI();
-            const goalSection = document.getElementById("goal-planner-section");
-            if (goalSection) goalSection.scrollIntoView({ behavior: "smooth" });
-        });
-    }
 
     // ==========================================
-    // 16. FEATURE 13: DYNAMIC THEME STUDIO
+    // 15. DYNAMIC THEME STUDIO
     // ==========================================
     const themeModal = document.getElementById("themeModal");
     const themeCustomizerBtn = document.getElementById("themeCustomizerBtn");
@@ -2358,7 +2345,6 @@ document.addEventListener("DOMContentLoaded", function () {
     renderPeerBenchmark(initialData);
     renderMultiModelComparison(initialData);
     renderHistoryUI();
-    renderMicroHabitsUI();
-    renderGoalsUI();
+    renderHabitsAndGoalsUI();
     refreshWhatIf();
 });

@@ -54,14 +54,13 @@
             <a href="#visualization-section" class="subnav-pill"><span class="pill-icon">📊</span> Habits Visualizer</a>
             <a href="#whatif-section" class="subnav-pill"><span class="pill-icon">🧪</span> Sandbox Matrix</a>
             <a href="#history-section" class="subnav-pill"><span class="pill-icon">📈</span> Trend Tracker</a>
-            <a href="#micro-habits-section" class="subnav-pill"><span class="pill-icon">⚡</span> Micro-Habits</a>
+            <a href="#habits-goals-section" class="subnav-pill"><span class="pill-icon">📅</span> Habits & Goals</a>
             <a href="#detox-timer-section" class="subnav-pill"><span class="pill-icon">⏱️</span> Detox Timer</a>
             <a href="#benchmark-section" class="subnav-pill"><span class="pill-icon">👥</span> Peer Benchmark</a>
             <a href="#focus-games-section" class="subnav-pill"><span class="pill-icon">🎮</span> Focus Mini-Games</a>
             <a href="#models-compare-section" class="subnav-pill"><span class="pill-icon">🤖</span> Multi-Model
                 Engine</a>
             <a href="#relaxation-section" class="subnav-pill"><span class="pill-icon">🎧</span> Audio Relaxation</a>
-            <a href="#goal-planner-section" class="subnav-pill"><span class="pill-icon">📅</span> Goal Planner</a>
         </div>
     </nav>
 
@@ -145,7 +144,7 @@
             <div id="formScreen">
                 <div class="section-header-flex">
                     <div>
-                        <span class="section-subtitle">ASSESSMENT ENGINE</span>
+                        <span class="section-subtitle">Feature 1: ASSESSMENT ENGINE</span>
                         <h2 id="assessmentTitle">Your Daily Habits Assessment</h2>
                         <p class="section-desc">Tune the parameters to reflect your daily routine. Our machine learning
                             model calculates your Risk Probability, SHAP feature contributions, and Wellness Score.</p>
@@ -309,7 +308,8 @@
 
                 <div class="result-actions">
                     <button type="button" id="restartBtn" class="submit-btn small">← Retake Assessment</button>
-                    <button type="button" id="downloadDatasetBtn" class="btn-secondary small" title="Download Excel / CSV Dataset">
+                    <button type="button" id="downloadDatasetBtn" class="btn-secondary small"
+                        title="Download Excel / CSV Dataset">
                         📥 Download Dataset (XLSX / CSV)
                     </button>
                     <a href="#detox-timer-section" class="action-pill-btn highlight">⏱️ Start Detox Timer</a>
@@ -365,10 +365,10 @@
             </div>
         </section>
 
-        <!-- FEATURE 7: RISK SCORE PREDICTOR SIMULATOR (SANDBOX MODE / SLIDER MATRIX) -->
+        <!-- FEATURE 3: RISK SCORE PREDICTOR SIMULATOR (SANDBOX MODE / SLIDER MATRIX) -->
         <section id="whatif-section" class="whatif-card card-glow-hover">
             <div class="section-tag-row">
-                <span class="section-subtitle">FEATURE 7: REAL-TIME SIMULATOR</span>
+                <span class="section-subtitle">FEATURE 3: REAL-TIME SIMULATOR</span>
                 <span class="category-badge">Sandbox Mode</span>
             </div>
             <h2 class="whatif-title">Risk Score Predictor Simulator (Slider Matrix)</h2>
@@ -504,10 +504,10 @@
             </div>
         </section>
 
-        <!-- FEATURE 3: HISTORY TRACKER & TREND ANALYTICS SECTION -->
+        <!-- FEATURE 4: HISTORY TRACKER & TREND ANALYTICS SECTION -->
         <section id="history-section" class="history-card card-glow-hover">
             <div class="section-tag-row">
-                <span class="section-subtitle">FEATURE 3: HISTORY & TRENDS</span>
+                <span class="section-subtitle">FEATURE 4: HISTORY & TRENDS</span>
                 <span class="category-badge">LocalStorage Engine</span>
             </div>
             <h2 class="card-main-title">Well-Being Trajectory Over Time</h2>
@@ -559,48 +559,88 @@
             </div>
         </section>
 
-        <!-- FEATURE 4: TAILORED MICRO-HABIT GENERATOR SECTION -->
-        <section id="micro-habits-section" class="habits-card card-glow-hover" id="microHabitsCard">
+        <!-- FEATURE 5: PERSONALIZED DAILY HABITS & GOAL PLANNER (MERGED WITH FEATURE 13) -->
+        <section id="habits-goals-section" class="habits-card card-glow-hover">
             <div class="section-tag-row">
-                <span class="section-subtitle">FEATURE 4: ACTIONABLE HABIT GENERATOR</span>
-                <span class="category-badge">Micro-Challenges</span>
+                <span class="section-subtitle">FEATURE 5: ACTIONABLE HABITS & GOAL PLANNER</span>
+                <span class="category-badge">Interactive Calendar & Micro-Challenges</span>
             </div>
             <div class="section-header-flex">
                 <div>
-                    <h2 class="card-main-title">Personalized Daily Micro-Challenges</h2>
-                    <p class="card-desc">Bite-sized, evidence-backed micro-challenges derived from your individual risk
-                        drivers. Check them off each day to build momentum.</p>
+                    <h2 class="card-main-title">Personalized Daily Habits & Goal Planner</h2>
+                    <p class="card-desc">Transform AI risk assessment insights into scheduled daily commitments. Track
+                        streaks, daily completion milestones, and weekly adherence in one unified dashboard.</p>
                 </div>
                 <div class="streak-badge-card">
                     <span class="streak-icon">🔥</span>
                     <div>
-                        <span class="streak-num" id="habitStreakCount">0</span>
+                        <span class="streak-num" id="habitStreakCount">3</span>
                         <span class="streak-label">Day Streak</span>
                     </div>
                 </div>
             </div>
 
-            <div class="progress-row">
-                <div class="progress-track">
-                    <div id="habitProgress" class="progress-fill" style="width: 0%;"></div>
+            <div class="planner-layout">
+                <!-- Left Column: Interactive Calendar & Adherence Metrics -->
+                <div class="calendar-panel">
+                    <div class="calendar-header">
+                        <h4 id="calendarMonthYear">August 2026</h4>
+                        <span class="today-tag" id="currentDayOfWeek">Friday</span>
+                    </div>
+                    <div class="calendar-week-strip" id="calendarWeekStrip"></div>
+
+                    <div class="planner-metric-box">
+                        <div class="metric-label-row">
+                            <span>Today's Progress</span>
+                            <span id="habitProgressText" class="progress-text">0 / 0 Completed</span>
+                        </div>
+                        <div class="progress-track">
+                            <div id="habitProgress" class="progress-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="planner-metric-box">
+                        <div class="metric-label-row">
+                            <span>Weekly Target Adherence</span>
+                            <b id="weeklyCompletionPct">80%</b>
+                        </div>
+                        <div class="completion-track">
+                            <div id="weeklyCompletionFill" class="completion-fill" style="width: 80%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="calendar-actions">
+                        <button type="button" id="refreshHabits" class="planner-ai-btn">↻ Auto-Generate from
+                            Assessment</button>
+                    </div>
                 </div>
-                <span id="habitProgressText" class="progress-text">0 / 0 Completed Today</span>
-            </div>
 
-            <ul id="microHabitsList" class="habit-list"></ul>
+                <!-- Right Column: Goal Creation & Unified Commitments List -->
+                <div class="goals-panel">
+                    <div class="add-goal-box">
+                        <input type="text" id="customHabitInput"
+                            placeholder="Add custom habit or goal (e.g. Limit screen time to 30 mins)..."
+                            aria-label="Add custom habit or goal">
+                        <select id="goalCategorySelect" aria-label="Select Goal Category">
+                            <option value="📱 Screen Time">📱 Screen Time</option>
+                            <option value="🛌 Sleep Routine">🛌 Sleep Routine</option>
+                            <option value="📚 Study & Focus">📚 Study & Focus</option>
+                            <option value="🧘 Mindfulness">🧘 Mindfulness</option>
+                            <option value="⚡ Micro-Habit">⚡ Micro-Habit</option>
+                        </select>
+                        <button type="button" id="addCustomHabitBtn" class="action-pill-btn">+ Add Goal</button>
+                    </div>
 
-            <div class="custom-habit-form">
-                <input type="text" id="customHabitInput"
-                    placeholder="Add your own custom micro-habit (e.g., Read 10 pages before bed)...">
-                <button type="button" id="addCustomHabitBtn" class="action-pill-btn">+ Add Challenge</button>
-                <button type="button" id="refreshHabits" class="linklike-btn">↻ Regenerate from Assessment</button>
+                    <ul id="microHabitsList" class="habit-list active-goals-list" aria-label="Habits and Goals List">
+                    </ul>
+                </div>
             </div>
         </section>
 
-        <!-- FEATURE 5: DIGITAL DETOX TIMER / FOCUS MODE SECTION -->
+        <!-- FEATURE 6: DIGITAL DETOX TIMER / FOCUS MODE SECTION -->
         <section id="detox-timer-section" class="timer-card card-glow-hover">
             <div class="section-tag-row">
-                <span class="section-subtitle">FEATURE 5: FOCUS & DETOX ENGINE</span>
+                <span class="section-subtitle">FEATURE 6: FOCUS & DETOX ENGINE</span>
                 <span class="category-badge">Screen-Free Countdown</span>
             </div>
             <h2 class="card-main-title">Digital Detox & Pomodoro Focus Timer</h2>
@@ -645,10 +685,10 @@
             </div>
         </section>
 
-        <!-- FEATURE 6: ANONYMIZED PEER BENCHMARK SECTION -->
+        <!-- FEATURE 7: ANONYMIZED PEER BENCHMARK SECTION -->
         <section id="benchmark-section" class="benchmark-card card-glow-hover">
             <div class="section-tag-row">
-                <span class="section-subtitle">FEATURE 6: PEER BENCHMARK</span>
+                <span class="section-subtitle">FEATURE 7: PEER BENCHMARK</span>
                 <span class="category-badge">Cohort Analytics</span>
             </div>
             <h2 class="card-main-title">How Do Your Habits Compare to the Community?</h2>
@@ -752,29 +792,40 @@
             </div>
         </section>
 
-        <!-- FEATURE 10: MULTI-MODEL COMPARISON ENGINE SECTION -->
+        <!-- FEATURE 9: MULTI-MODEL COMPARISON ENGINE SECTION -->
         <section id="models-compare-section" class="models-card card-glow-hover">
             <div class="section-tag-row">
-                <span class="section-subtitle">FEATURE 10: MULTI-MODEL ENGINE & EXPLAINABLE AI (XAI)</span>
+                <span class="section-subtitle">FEATURE 9: MULTI-MODEL ENGINE & EXPLAINABLE AI (XAI)</span>
                 <span class="category-badge">7-Model Machine Learning Suite</span>
             </div>
             <h2 class="card-main-title">Multi-Model Prediction & Confidence Engine</h2>
-            <p class="card-desc">Simultaneously evaluate and compare predictions across <b>7 state-of-the-art algorithmic architectures</b>: <b>CatBoost</b>, <b>XGBoost</b>, <b>Random Forest</b>, <b>Decision Trees</b>, <b>Logistic Regression</b>, <b>Gaussian Naive Bayes</b>, and <b>Linear Discriminant Analysis (LDA)</b>.</p>
+            <p class="card-desc">Simultaneously evaluate and compare predictions across <b>7 state-of-the-art
+                    algorithmic architectures</b>: <b>CatBoost</b>, <b>XGBoost</b>, <b>Random Forest</b>, <b>Decision
+                    Trees</b>, <b>Logistic Regression</b>, <b>Gaussian Naive Bayes</b>, and <b>Linear Discriminant
+                    Analysis (LDA)</b>.</p>
 
             <div class="model-toggles">
-                <label class="model-pill"><input type="checkbox" class="model-cb" value="catboost" checked><span>🐱 CatBoost (Categorical Boost)</span></label>
-                <label class="model-pill"><input type="checkbox" class="model-cb" value="xgboost" checked><span>🚀 XGBoost (Gradient Boost)</span></label>
-                <label class="model-pill"><input type="checkbox" class="model-cb" value="rf" checked><span>🌲 Random Forest (Ensemble)</span></label>
-                <label class="model-pill"><input type="checkbox" class="model-cb" value="dtree" checked><span>🌿 Decision Tree (Interpretable)</span></label>
-                <label class="model-pill"><input type="checkbox" class="model-cb" value="logreg" checked><span>📈 Logistic Regression (Linear)</span></label>
-                <label class="model-pill"><input type="checkbox" class="model-cb" value="naivebayes" checked><span>🎲 Naive Bayes (Probabilistic)</span></label>
-                <label class="model-pill"><input type="checkbox" class="model-cb" value="lda" checked><span>📐 Linear Discriminant (LDA)</span></label>
+                <label class="model-pill"><input type="checkbox" class="model-cb" value="catboost" checked><span>🐱
+                        CatBoost (Categorical Boost)</span></label>
+                <label class="model-pill"><input type="checkbox" class="model-cb" value="xgboost" checked><span>🚀
+                        XGBoost (Gradient Boost)</span></label>
+                <label class="model-pill"><input type="checkbox" class="model-cb" value="rf" checked><span>🌲 Random
+                        Forest (Ensemble)</span></label>
+                <label class="model-pill"><input type="checkbox" class="model-cb" value="dtree" checked><span>🌿
+                        Decision Tree (Interpretable)</span></label>
+                <label class="model-pill"><input type="checkbox" class="model-cb" value="logreg" checked><span>📈
+                        Logistic Regression (Linear)</span></label>
+                <label class="model-pill"><input type="checkbox" class="model-cb" value="naivebayes" checked><span>🎲
+                        Naive Bayes (Probabilistic)</span></label>
+                <label class="model-pill"><input type="checkbox" class="model-cb" value="lda" checked><span>📐 Linear
+                        Discriminant (LDA)</span></label>
             </div>
 
             <div class="model-actions-row">
                 <button type="button" id="selectAllModelsBtn" class="linklike-btn">✓ Select All Models</button>
                 <button type="button" id="selectTreesOnlyBtn" class="linklike-btn">🌲 Boosted & Trees Only</button>
-                <button type="button" id="selectLinearOnlyBtn" class="linklike-btn">📈 Linear & Probabilistic Only</button>
+                <button type="button" id="selectLinearOnlyBtn" class="linklike-btn">📈 Linear & Probabilistic
+                    Only</button>
             </div>
 
             <div class="models-grid" id="modelsGrid"></div>
@@ -789,13 +840,16 @@
                 </div>
             </div>
 
-            <!-- EXPLAINABLE AI (XAI) & SHAP ATTRIBUTION HUB -->
+            <!-- Feature 10: EXPLAINABLE AI (XAI) & SHAP ATTRIBUTION HUB -->
             <div class="xai-hub-container">
                 <div class="xai-header">
                     <div>
-                        <span class="section-subtitle">EXPLAINABLE AI (XAI) & MATHEMATICAL ATTRIBUTION</span>
+                        <span class="section-subtitle">FEATURE 10: EXPLAINABLE AI (XAI) & MATHEMATICAL
+                            ATTRIBUTION</span>
                         <h3 class="xai-title">🧠 Model Explainability & SHAP Feature Contribution</h3>
-                        <p class="xai-desc">Demystifying the "Black Box": Inspect how individual behavioural factors mathematically influence model output margins using cooperative game theory (Shapley Values).</p>
+                        <p class="xai-desc">Demystifying the "Black Box": Inspect how individual behavioural factors
+                            mathematically influence model output margins using cooperative game theory (Shapley
+                            Values).</p>
                     </div>
                     <div class="xai-model-select-wrap">
                         <label for="xaiModelSelect">Explaining Model:</label>
@@ -848,7 +902,8 @@
 
                 <!-- ALGORITHMIC BENCHMARK & METRICS COMPARISON TABLE -->
                 <div class="model-benchmark-table-wrap">
-                    <h4 class="table-title">📋 7-Model Benchmark & Architecture Comparison (Trained on 500K Samples)</h4>
+                    <h4 class="table-title">📋 7-Model Benchmark & Architecture Comparison (Trained on 500K Samples)
+                    </h4>
                     <div class="table-responsive">
                         <table class="benchmark-table">
                             <thead>
@@ -936,7 +991,7 @@
         <!-- FEATURE 11: AUDIO-GUIDED RELAXATION SESSIONS SECTION -->
         <section id="relaxation-section" class="relax-card card-glow-hover">
             <div class="section-tag-row">
-                <span class="section-subtitle">FEATURE 12: GUIDED RELAXATION</span>
+                <span class="section-subtitle">FEATURE 11: GUIDED RELAXATION</span>
                 <span class="category-badge">Web Audio Synthesizer</span>
             </div>
             <h2 class="card-main-title">3-Minute Audio-Guided Breathwork & Soundscapes</h2>
@@ -993,51 +1048,7 @@
             </div>
         </section>
 
-        <!-- FEATURE 12: CUSTOMIZABLE DAILY GOAL PLANNER SECTION -->
-        <section id="goal-planner-section" class="planner-card card-glow-hover">
-            <div class="section-tag-row">
-                <span class="section-subtitle">FEATURE 13: DAILY GOAL PLANNER</span>
-                <span class="category-badge">Interactive Calendar</span>
-            </div>
-            <h2 class="card-main-title">Customizable Wellness Goal Planner & Dashboard</h2>
-            <p class="card-desc">Convert model suggestions into scheduled commitments and track completion consistency
-                across the week.</p>
-
-            <div class="planner-layout">
-                <div class="calendar-panel">
-                    <div class="calendar-header">
-                        <h4 id="calendarMonthYear">August 2026</h4>
-                        <span class="today-tag" id="currentDayOfWeek">Friday</span>
-                    </div>
-                    <div class="calendar-week-strip" id="calendarWeekStrip"></div>
-                    <div class="weekly-completion-meter">
-                        <span>Weekly Target Adherence:</span>
-                        <div class="completion-track">
-                            <div id="weeklyCompletionFill" class="completion-fill" style="width: 80%;"></div>
-                        </div>
-                        <b id="weeklyCompletionPct">80%</b>
-                    </div>
-                </div>
-
-                <div class="goals-panel">
-                    <div class="add-goal-box">
-                        <input type="text" id="newGoalInput"
-                            placeholder="Add custom goal (e.g. Limit Instagram to 30 mins)...">
-                        <select id="goalCategorySelect">
-                            <option value="📱 Screen Time">📱 Screen Time</option>
-                            <option value="🛌 Sleep Routine">🛌 Sleep</option>
-                            <option value="📚 Study & Focus">📚 Deep Work</option>
-                            <option value="🧘 Mindfulness">🧘 Mindfulness</option>
-                        </select>
-                        <button type="button" id="addGoalBtn" class="action-pill-btn">+ Add Goal</button>
-                    </div>
-
-                    <ul id="activeGoalsList" class="active-goals-list"></ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- FEATURE 13: DYNAMIC THEME BUILDER MODAL / DRAWER -->
+        <!-- FEATURE 12: DYNAMIC THEME BUILDER MODAL / DRAWER -->
         <div id="themeModal" class="modal-backdrop hidden" role="dialog" aria-modal="true"
             aria-labelledby="themeModalTitle">
             <div class="theme-modal-card">
