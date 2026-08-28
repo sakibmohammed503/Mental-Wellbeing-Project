@@ -370,6 +370,19 @@ document.addEventListener("DOMContentLoaded", function () {
     // ==========================================
     // 4. CHART.JS RENDERING & VISUALIZATIONS
     // ==========================================
+    const getChartThemeColors = function () {
+        const isDark = document.body.classList.contains("dark-mode") || document.documentElement.classList.contains("dark-mode");
+        return {
+            isDark: isDark,
+            textMain: isDark ? "#f8fafc" : "#0f172a",
+            textMuted: isDark ? "#94a3b8" : "#475569",
+            gridColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)",
+            tooltipBg: isDark ? "#1e293b" : "#0f172a",
+            tooltipText: "#ffffff",
+            tooltipBorder: isDark ? "#334876" : "#cbd5e1"
+        };
+    };
+
     const renderGauge = function (score, canvasId, existingChart) {
         if (typeof Chart === "undefined") return null;
         const canvas = document.getElementById(canvasId);
@@ -377,12 +390,13 @@ document.addEventListener("DOMContentLoaded", function () {
         if (existingChart) {
             try { existingChart.destroy(); } catch (_) { }
         }
+        const theme = getChartThemeColors();
         return new Chart(canvas.getContext("2d"), {
             type: "doughnut",
             data: {
                 datasets: [{
                     data: [score, Math.max(0, 100 - score)],
-                    backgroundColor: [gaugeColor(score), "#e2e8f0"],
+                    backgroundColor: [gaugeColor(score), theme.isDark ? "#1e2b48" : "#e2e8f0"],
                     borderWidth: 0,
                     hoverOffset: 0
                 }]
@@ -401,6 +415,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const updateHabitsVisualizations = function (d) {
         if (typeof Chart === "undefined") return;
+        const theme = getChartThemeColors();
 
         // 1. Screen Time vs Sleep Ratio (Doughnut)
         const ratioCanvas = document.getElementById("screenSleepRatioChart");
@@ -428,13 +443,25 @@ document.addEventListener("DOMContentLoaded", function () {
                         data: [sleep, totalScreens, Math.round((d.study_hours_per_week || 20) / 7)],
                         backgroundColor: ["#10b981", "#ef4444", "#3b82f6"],
                         borderWidth: 2,
-                        borderColor: "#ffffff"
+                        borderColor: theme.isDark ? "#141f36" : "#ffffff"
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { position: "bottom" } }
+                    plugins: {
+                        legend: {
+                            position: "bottom",
+                            labels: { color: theme.textMain, font: { weight: 600 } }
+                        },
+                        tooltip: {
+                            backgroundColor: theme.tooltipBg,
+                            titleColor: theme.tooltipText,
+                            bodyColor: theme.tooltipText,
+                            borderColor: theme.tooltipBorder,
+                            borderWidth: 1
+                        }
+                    }
                 }
             });
         }
@@ -471,7 +498,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    scales: { r: { min: 0, max: 100, ticks: { stepSize: 25 } } }
+                    scales: {
+                        r: {
+                            min: 0,
+                            max: 100,
+                            ticks: { stepSize: 25, color: theme.textMuted, backdropColor: "transparent" },
+                            grid: { color: theme.gridColor },
+                            angleLines: { color: theme.gridColor },
+                            pointLabels: { color: theme.textMain, font: { weight: 600, size: 12 } }
+                        }
+                    },
+                    plugins: {
+                        legend: { labels: { color: theme.textMain, font: { weight: 600 } } },
+                        tooltip: {
+                            backgroundColor: theme.tooltipBg,
+                            titleColor: theme.tooltipText,
+                            bodyColor: theme.tooltipText,
+                            borderColor: theme.tooltipBorder,
+                            borderWidth: 1
+                        }
+                    }
                 }
             });
         }
@@ -494,8 +540,28 @@ document.addEventListener("DOMContentLoaded", function () {
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: { y: { beginAtZero: true, max: 12 } }
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: theme.tooltipBg,
+                            titleColor: theme.tooltipText,
+                            bodyColor: theme.tooltipText,
+                            borderColor: theme.tooltipBorder,
+                            borderWidth: 1
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 12,
+                            grid: { color: theme.gridColor },
+                            ticks: { color: theme.textMuted }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: theme.textMuted, font: { weight: 600 } }
+                        }
+                    }
                 }
             });
         }
@@ -595,6 +661,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (historyLineChart) try { historyLineChart.destroy(); } catch (_) { }
                 const labels = history.map(function (h) { return h.date + " " + h.time; });
                 const dataPoints = history.map(function (h) { return h.score; });
+                const theme = getChartThemeColors();
 
                 historyLineChart = new Chart(lineCanvas.getContext("2d"), {
                     type: "line",
@@ -615,8 +682,28 @@ document.addEventListener("DOMContentLoaded", function () {
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
+                        plugins: {
+                            legend: { labels: { color: theme.textMain, font: { weight: 600 } } },
+                            tooltip: {
+                                backgroundColor: theme.tooltipBg,
+                                titleColor: theme.tooltipText,
+                                bodyColor: theme.tooltipText,
+                                borderColor: theme.tooltipBorder,
+                                borderWidth: 1
+                            }
+                        },
                         scales: {
-                            y: { min: 0, max: 100, title: { display: true, text: "Wellness Score (0-100)" } }
+                            y: {
+                                min: 0,
+                                max: 100,
+                                grid: { color: theme.gridColor },
+                                ticks: { color: theme.textMuted },
+                                title: { display: true, text: "Wellness Score (0-100)", color: theme.textMuted, font: { weight: 600 } }
+                            },
+                            x: {
+                                grid: { color: theme.gridColor },
+                                ticks: { color: theme.textMuted }
+                            }
                         }
                     }
                 });
@@ -1192,11 +1279,18 @@ document.addEventListener("DOMContentLoaded", function () {
             Math.min(100, Math.max(10, Math.round((10 - d.digital_addiction_score) * 10)))
         ];
 
+        const theme = getChartThemeColors();
+
         // Peer Radar Chart
         const radarCanvas = document.getElementById("peerRadarChart");
         if (radarCanvas) {
             if (peerRadarChart && peerRadarChart.ctx) {
                 peerRadarChart.data.datasets[0].data = radarData;
+                if (peerRadarChart.options && peerRadarChart.options.scales && peerRadarChart.options.scales.r) {
+                    peerRadarChart.options.scales.r.grid.color = theme.gridColor;
+                    peerRadarChart.options.scales.r.angleLines.color = theme.gridColor;
+                    peerRadarChart.options.scales.r.pointLabels.color = theme.textMain;
+                }
                 peerRadarChart.update("none");
             } else {
                 try { if (peerRadarChart) peerRadarChart.destroy(); } catch (_) { }
@@ -1225,7 +1319,26 @@ document.addEventListener("DOMContentLoaded", function () {
                         responsive: true,
                         maintainAspectRatio: false,
                         animation: { duration: 250 },
-                        scales: { r: { min: 0, max: 100, ticks: { display: false } } }
+                        scales: {
+                            r: {
+                                min: 0,
+                                max: 100,
+                                ticks: { display: false },
+                                grid: { color: theme.gridColor },
+                                angleLines: { color: theme.gridColor },
+                                pointLabels: { color: theme.textMain, font: { weight: 600, size: 11 } }
+                            }
+                        },
+                        plugins: {
+                            legend: { labels: { color: theme.textMain, font: { weight: 600 } } },
+                            tooltip: {
+                                backgroundColor: theme.tooltipBg,
+                                titleColor: theme.tooltipText,
+                                bodyColor: theme.tooltipText,
+                                borderColor: theme.tooltipBorder,
+                                borderWidth: 1
+                            }
+                        }
                     }
                 });
             }
@@ -1237,6 +1350,13 @@ document.addEventListener("DOMContentLoaded", function () {
             const barDataYou = [d.sleep_hours, d.social_media_hours, d.short_video_hours];
             if (peerBarChart && peerBarChart.ctx) {
                 peerBarChart.data.datasets[0].data = barDataYou;
+                if (peerBarChart.options && peerBarChart.options.scales && peerBarChart.options.scales.y) {
+                    peerBarChart.options.scales.y.grid.color = theme.gridColor;
+                    peerBarChart.options.scales.y.ticks.color = theme.textMuted;
+                }
+                if (peerBarChart.options && peerBarChart.options.scales && peerBarChart.options.scales.x) {
+                    peerBarChart.options.scales.x.ticks.color = theme.textMuted;
+                }
                 peerBarChart.update("none");
             } else {
                 try { if (peerBarChart) peerBarChart.destroy(); } catch (_) { }
@@ -1253,7 +1373,27 @@ document.addEventListener("DOMContentLoaded", function () {
                         responsive: true,
                         maintainAspectRatio: false,
                         animation: { duration: 250 },
-                        scales: { y: { beginAtZero: true } }
+                        plugins: {
+                            legend: { labels: { color: theme.textMain, font: { weight: 600 } } },
+                            tooltip: {
+                                backgroundColor: theme.tooltipBg,
+                                titleColor: theme.tooltipText,
+                                bodyColor: theme.tooltipText,
+                                borderColor: theme.tooltipBorder,
+                                borderWidth: 1
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: { color: theme.gridColor },
+                                ticks: { color: theme.textMuted }
+                            },
+                            x: {
+                                grid: { display: false },
+                                ticks: { color: theme.textMuted, font: { weight: 600 } }
+                            }
+                        }
                     }
                 });
             }
@@ -1267,6 +1407,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const canvas = document.getElementById("sandboxProbabilityChart");
         if (!canvas || typeof Chart === "undefined") return;
         if (sandboxProbabilityChart) try { sandboxProbabilityChart.destroy(); } catch (_) { }
+        const theme = getChartThemeColors();
 
         sandboxProbabilityChart = new Chart(canvas.getContext("2d"), {
             type: "bar",
@@ -1281,8 +1422,29 @@ document.addEventListener("DOMContentLoaded", function () {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
-                scales: { y: { beginAtZero: true, max: 100, title: { display: true, text: "Probability %" } } }
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: theme.tooltipBg,
+                        titleColor: theme.tooltipText,
+                        bodyColor: theme.tooltipText,
+                        borderColor: theme.tooltipBorder,
+                        borderWidth: 1
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: { display: true, text: "Probability %", color: theme.textMuted, font: { weight: 600 } },
+                        grid: { color: theme.gridColor },
+                        ticks: { color: theme.textMuted }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: theme.textMuted, font: { weight: 600 } }
+                    }
+                }
             }
         });
     };
@@ -1627,6 +1789,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 };
             });
 
+            const theme = getChartThemeColors();
             modelsCompareChart = new Chart(compareCanvas.getContext("2d"), {
                 type: "bar",
                 data: {
@@ -1640,18 +1803,35 @@ document.addEventListener("DOMContentLoaded", function () {
                         y: {
                             beginAtZero: true,
                             max: 100,
-                            title: { display: true, text: "Class Probability (%)", color: "#94a3b8" },
-                            grid: { color: "rgba(255, 255, 255, 0.06)" },
-                            ticks: { color: "#94a3b8" }
+                            title: { display: true, text: "Class Probability (%)", color: theme.textMuted, font: { weight: 600 } },
+                            grid: { color: theme.gridColor },
+                            ticks: { color: theme.textMuted }
                         },
                         x: {
                             grid: { display: false },
-                            ticks: { color: "#94a3b8" }
+                            ticks: { color: theme.textMuted, font: { weight: 600 } }
                         }
                     },
                     plugins: {
                         legend: {
-                            labels: { color: "#f8fafc" }
+                            display: true,
+                            position: "top",
+                            labels: {
+                                color: theme.isDark ? "#f8fafc" : "#0f172a",
+                                fontColor: theme.isDark ? "#f8fafc" : "#0f172a",
+                                font: { weight: 700, size: 12, family: "'Plus Jakarta Sans', -apple-system, sans-serif" },
+                                boxWidth: 14,
+                                padding: 12
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: theme.tooltipBg,
+                            titleColor: theme.tooltipText,
+                            bodyColor: theme.tooltipText,
+                            borderColor: theme.tooltipBorder,
+                            borderWidth: 1,
+                            padding: 10,
+                            cornerRadius: 8
                         }
                     }
                 }
@@ -2461,9 +2641,19 @@ document.addEventListener("DOMContentLoaded", function () {
     // Chart.js Theme Synchronizer
     const updateChartThemeDefaults = function () {
         if (typeof Chart === "undefined") return;
-        const isDark = document.body.classList.contains("dark-mode");
-        Chart.defaults.color = isDark ? "#94a3b8" : "#64748b";
-        Chart.defaults.borderColor = isDark ? "rgba(255, 255, 255, 0.08)" : "#e2e8f0";
+        const theme = getChartThemeColors();
+        Chart.defaults.color = theme.textMain;
+        Chart.defaults.borderColor = theme.gridColor;
+        if (!Chart.defaults.plugins) Chart.defaults.plugins = {};
+        if (!Chart.defaults.plugins.legend) Chart.defaults.plugins.legend = {};
+        if (!Chart.defaults.plugins.legend.labels) Chart.defaults.plugins.legend.labels = {};
+        Chart.defaults.plugins.legend.labels.color = theme.textMain;
+        Chart.defaults.plugins.legend.labels.fontColor = theme.textMain;
+        if (!Chart.defaults.plugins.tooltip) Chart.defaults.plugins.tooltip = {};
+        Chart.defaults.plugins.tooltip.backgroundColor = theme.tooltipBg;
+        Chart.defaults.plugins.tooltip.titleColor = theme.tooltipText;
+        Chart.defaults.plugins.tooltip.bodyColor = theme.tooltipText;
+        Chart.defaults.plugins.tooltip.borderColor = theme.tooltipBorder;
     };
 
     updateChartThemeDefaults();

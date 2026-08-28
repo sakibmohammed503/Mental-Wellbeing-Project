@@ -370,6 +370,38 @@ body.dark-mode .hotkey-badge:hover {
     color: #ffffff !important;
 }
 
+/* DARK MODE LINKLIKE BUTTONS & ACTION FILTER BUTTONS */
+body.dark-mode .linklike-btn {
+    color: var(--primary-light, #60a5fa) !important;
+}
+
+body.dark-mode .linklike-btn:hover {
+    background: var(--primary-glow) !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .linklike-btn.danger {
+    color: #f87171 !important;
+}
+
+body.dark-mode .linklike-btn.danger:hover {
+    background: rgba(239, 68, 68, 0.2) !important;
+    color: #fca5a5 !important;
+}
+
+body.dark-mode .model-actions-row .linklike-btn {
+    background: #1c2b48 !important;
+    border: 1px solid #25375e !important;
+    color: #f8fafc !important;
+}
+
+body.dark-mode .model-actions-row .linklike-btn:hover {
+    background: var(--primary-glow) !important;
+    border-color: var(--primary-light, #60a5fa) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px var(--primary-glow) !important;
+}
+
 /* =========================================================
    5. UNIVERSAL THEME MODAL STYLING (ALL PAGES)
    ========================================================= */
