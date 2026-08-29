@@ -850,16 +850,29 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     const triggerDatasetDownload = function () {
-        const csvContent = generateFullDatasetCsv();
-        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "mindful_wellness_responses.csv";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+        const d = collectUserData();
+
+        // 1. Save current entry to the Render backend Excel
+        fetch(BACKEND_URL + "/api/assess", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(d)
+        }).then(function () {
+            // 2. Download the full Excel from the backend
+            window.location.href = BACKEND_URL + "/download-data";
+        }).catch(function () {
+            // Fallback: generate CSV locally if backend is unreachable
+            const csvContent = generateFullDatasetCsv();
+            const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "mindful_wellness_responses.csv";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
     };
 
     // Export CSV
@@ -2341,6 +2354,13 @@ document.addEventListener("DOMContentLoaded", function () {
             renderPeerBenchmark(userData);
             renderMultiModelComparison(userData);
             saveAssessmentToHistory(localScore, localRisk, userData);
+
+            // Save entry to Render backend
+            fetch(BACKEND_URL + "/api/assess", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(userData)
+            }).catch(function () { /* silent fail */ });
 
             if (formScreen) formScreen.classList.add("hidden");
             if (resultBox) {

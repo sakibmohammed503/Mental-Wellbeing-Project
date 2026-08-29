@@ -559,136 +559,10 @@
             </div>
         </section>
 
-        <!-- FEATURE 5: PERSONALIZED DAILY HABITS & GOAL PLANNER (MERGED WITH FEATURE 13) -->
-        <section id="habits-goals-section" class="habits-card card-glow-hover">
-            <div class="section-tag-row">
-                <span class="section-subtitle">FEATURE 5: ACTIONABLE HABITS & GOAL PLANNER</span>
-                <span class="category-badge">Interactive Calendar & Micro-Challenges</span>
-            </div>
-            <div class="section-header-flex">
-                <div>
-                    <h2 class="card-main-title">Personalized Daily Habits & Goal Planner</h2>
-                    <p class="card-desc">Transform AI risk assessment insights into scheduled daily commitments. Track
-                        streaks, daily completion milestones, and weekly adherence in one unified dashboard.</p>
-                </div>
-                <div class="streak-badge-card">
-                    <span class="streak-icon">🔥</span>
-                    <div>
-                        <span class="streak-num" id="habitStreakCount">3</span>
-                        <span class="streak-label">Day Streak</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="planner-layout">
-                <!-- Left Column: Interactive Calendar & Adherence Metrics -->
-                <div class="calendar-panel">
-                    <div class="calendar-header">
-                        <h4 id="calendarMonthYear">August 2026</h4>
-                        <span class="today-tag" id="currentDayOfWeek">Friday</span>
-                    </div>
-                    <div class="calendar-week-strip" id="calendarWeekStrip"></div>
-
-                    <div class="planner-metric-box">
-                        <div class="metric-label-row">
-                            <span>Today's Progress</span>
-                            <span id="habitProgressText" class="progress-text">0 / 0 Completed</span>
-                        </div>
-                        <div class="progress-track">
-                            <div id="habitProgress" class="progress-fill" style="width: 0%;"></div>
-                        </div>
-                    </div>
-
-                    <div class="planner-metric-box">
-                        <div class="metric-label-row">
-                            <span>Weekly Target Adherence</span>
-                            <b id="weeklyCompletionPct">80%</b>
-                        </div>
-                        <div class="completion-track">
-                            <div id="weeklyCompletionFill" class="completion-fill" style="width: 80%;"></div>
-                        </div>
-                    </div>
-
-                    <div class="calendar-actions">
-                        <button type="button" id="refreshHabits" class="planner-ai-btn">↻ Auto-Generate from
-                            Assessment</button>
-                    </div>
-                </div>
-
-                <!-- Right Column: Goal Creation & Unified Commitments List -->
-                <div class="goals-panel">
-                    <div class="add-goal-box">
-                        <input type="text" id="customHabitInput"
-                            placeholder="Add custom habit or goal (e.g. Limit screen time to 30 mins)..."
-                            aria-label="Add custom habit or goal">
-                        <select id="goalCategorySelect" aria-label="Select Goal Category">
-                            <option value="📱 Screen Time">📱 Screen Time</option>
-                            <option value="🛌 Sleep Routine">🛌 Sleep Routine</option>
-                            <option value="📚 Study & Focus">📚 Study & Focus</option>
-                            <option value="🧘 Mindfulness">🧘 Mindfulness</option>
-                            <option value="⚡ Micro-Habit">⚡ Micro-Habit</option>
-                        </select>
-                        <button type="button" id="addCustomHabitBtn" class="action-pill-btn">+ Add Goal</button>
-                    </div>
-
-                    <ul id="microHabitsList" class="habit-list active-goals-list" aria-label="Habits and Goals List">
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- FEATURE 6: DIGITAL DETOX TIMER / FOCUS MODE SECTION -->
-        <section id="detox-timer-section" class="timer-card card-glow-hover">
-            <div class="section-tag-row">
-                <span class="section-subtitle">FEATURE 6: FOCUS & DETOX ENGINE</span>
-                <span class="category-badge">Screen-Free Countdown</span>
-            </div>
-            <h2 class="card-main-title">Digital Detox & Pomodoro Focus Timer</h2>
-            <p class="card-desc">Put your phone face down and disconnect from notifications immediately after taking
-                your assessment to protect focus stamina.</p>
-
-            <div class="timer-main-wrapper">
-                <div class="timer-circle-wrap">
-                    <svg class="timer-svg" viewBox="0 0 100 100">
-                        <circle class="timer-circle-bg" cx="50" cy="50" r="44"></circle>
-                        <circle class="timer-circle-progress" id="timerSvgProgress" cx="50" cy="50" r="44"></circle>
-                    </svg>
-                    <div class="timer-display">
-                        <span id="timerMM">25</span><span class="timer-sep">:</span><span id="timerSS">00</span>
-                        <span class="timer-mode-tag" id="timerModeTag">Detox Focus</span>
-                    </div>
-                </div>
-
-                <div class="timer-control-panel">
-                    <div class="timer-presets">
-                        <button type="button" data-mins="5" class="preset-btn">5 min</button>
-                        <button type="button" data-mins="15" class="preset-btn">15 min</button>
-                        <button type="button" data-mins="25" class="preset-btn active">25 min (Pomodoro)</button>
-                        <button type="button" data-mins="45" class="preset-btn">45 min</button>
-                        <button type="button" data-mins="60" class="preset-btn">60 min</button>
-                    </div>
-
-                    <div class="timer-controls">
-                        <button type="button" id="timerStart" class="submit-btn small">▶ Start Timer</button>
-                        <button type="button" id="timerPause" class="btn-secondary small">⏸ Pause</button>
-                        <button type="button" id="timerReset" class="linklike-btn danger">↺ Reset</button>
-                    </div>
-
-                    <div class="focus-mode-toggle-row">
-                        <button type="button" id="enterFullscreenFocusBtn" class="focus-mode-btn">🔲 Enter Immersive
-                            Focus Room</button>
-                    </div>
-
-                    <p id="timerStatus" class="timer-status">Ready. Select a preset and begin your screen-free break.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- FEATURE 7: ANONYMIZED PEER BENCHMARK SECTION -->
+                <!-- FEATURE 5: ANONYMIZED PEER BENCHMARK SECTION -->
         <section id="benchmark-section" class="benchmark-card card-glow-hover">
             <div class="section-tag-row">
-                <span class="section-subtitle">FEATURE 7: PEER BENCHMARK</span>
+                <span class="section-subtitle">FEATURE 5: PEER BENCHMARK</span>
                 <span class="category-badge">Cohort Analytics</span>
             </div>
             <h2 class="card-main-title">How Do Your Habits Compare to the Community?</h2>
@@ -735,67 +609,10 @@
                 datasets and local platform interactions.</div>
         </section>
 
-        <!-- FEATURE 8: COGNITIVE FOCUS MINI-GAMES SECTION -->
-        <section id="focus-games-section" class="games-card card-glow-hover">
-            <div class="section-tag-row">
-                <span class="section-subtitle">FEATURE 8: COGNITIVE MINI-GAMES</span>
-                <span class="category-badge">Brain Fatigue Tests</span>
-            </div>
-            <h2 class="card-main-title">2-Minute Cognitive Reaction & Memory Diagnostics</h2>
-            <p class="card-desc">Self-reported surveys can be subjective. Measure your actual neurological reaction
-                speed and working memory to objectively detect digital brain fatigue.</p>
-
-            <div class="games-tab-row">
-                <button type="button" id="tabGameReaction" class="game-tab-btn active">⚡ Millisecond Reflex
-                    Test</button>
-                <button type="button" id="tabGameMemory" class="game-tab-btn">🧠 Pattern Sequence Matrix</button>
-            </div>
-
-            <!-- GAME 1: REACTION TIME -->
-            <div id="reactionGameBox" class="game-wrapper">
-                <div class="reaction-target red" id="reactionClickArea">
-                    <div class="reaction-prompt-text" id="reactionPrompt">Click anywhere here to Start Reflex Test</div>
-                </div>
-                <div class="reaction-stats-bar">
-                    <div class="reflex-metric"><span>Trial:</span> <b id="reactionTrialNum">0 / 3</b></div>
-                    <div class="reflex-metric"><span>Last Time:</span> <b id="reactionLastTime">-- ms</b></div>
-                    <div class="reflex-metric"><span>Avg Reflex:</span> <b id="reactionAvgTime">-- ms</b></div>
-                    <div class="reflex-metric"><span>Cognitive Rating:</span> <b id="reactionRating">Ready</b></div>
-                </div>
-            </div>
-
-            <!-- GAME 2: MEMORY SEQUENCE -->
-            <div id="memoryGameBox" class="game-wrapper hidden">
-                <div class="memory-status-bar">
-                    <span>Level: <b id="memoryLevel">1</b></span>
-                    <span>Best Score: <b id="memoryBest">0</b></span>
-                    <button type="button" id="memoryStartBtn" class="action-pill-btn">▶ Start Sequence</button>
-                </div>
-                <div class="memory-grid" id="memoryGrid">
-                    <button class="mem-tile" data-index="0" aria-label="Tile 1"></button>
-                    <button class="mem-tile" data-index="1" aria-label="Tile 2"></button>
-                    <button class="mem-tile" data-index="2" aria-label="Tile 3"></button>
-                    <button class="mem-tile" data-index="3" aria-label="Tile 4"></button>
-                    <button class="mem-tile" data-index="4" aria-label="Tile 5"></button>
-                    <button class="mem-tile" data-index="5" aria-label="Tile 6"></button>
-                    <button class="mem-tile" data-index="6" aria-label="Tile 7"></button>
-                    <button class="mem-tile" data-index="7" aria-label="Tile 8"></button>
-                    <button class="mem-tile" data-index="8" aria-label="Tile 9"></button>
-                </div>
-                <p id="memoryInstruction" class="game-instruct">Press Start Sequence and watch the glowing pattern
-                    closely.</p>
-            </div>
-
-            <div class="game-sync-footer">
-                <button type="button" id="syncFatigueToAssessmentBtn" class="action-pill-btn highlight">🎯 Feed
-                    Cognitive Score into Assessment</button>
-            </div>
-        </section>
-
-        <!-- FEATURE 9: MULTI-MODEL COMPARISON ENGINE SECTION -->
+               <!-- FEATURE 6: MULTI-MODEL COMPARISON ENGINE SECTION -->
         <section id="models-compare-section" class="models-card card-glow-hover">
             <div class="section-tag-row">
-                <span class="section-subtitle">FEATURE 9: MULTI-MODEL ENGINE & EXPLAINABLE AI (XAI)</span>
+                <span class="section-subtitle">FEATURE 6: MULTI-MODEL ENGINE & EXPLAINABLE AI (XAI)</span>
                 <span class="category-badge">7-Model Machine Learning Suite</span>
             </div>
             <h2 class="card-main-title">Multi-Model Prediction & Confidence Engine</h2>
@@ -840,11 +657,11 @@
                 </div>
             </div>
 
-            <!-- Feature 10: EXPLAINABLE AI (XAI) & SHAP ATTRIBUTION HUB -->
+            <!-- Feature 7: EXPLAINABLE AI (XAI) & SHAP ATTRIBUTION HUB -->
             <div class="xai-hub-container">
                 <div class="xai-header">
                     <div>
-                        <span class="section-subtitle">FEATURE 10: EXPLAINABLE AI (XAI) & MATHEMATICAL
+                        <span class="section-subtitle">FEATURE 7: EXPLAINABLE AI (XAI) & MATHEMATICAL
                             ATTRIBUTION</span>
                         <h3 class="xai-title">🧠 Model Explainability & SHAP Feature Contribution</h3>
                         <p class="xai-desc">Demystifying the "Black Box": Inspect how individual behavioural factors
@@ -987,6 +804,193 @@
                 </div>
             </div>
         </section>
+
+        <!-- FEATURE 8: PERSONALIZED DAILY HABITS & GOAL PLANNER (MERGED WITH FEATURE 13) -->
+        <section id="habits-goals-section" class="habits-card card-glow-hover">
+            <div class="section-tag-row">
+                <span class="section-subtitle">FEATURE 8: ACTIONABLE HABITS & GOAL PLANNER</span>
+                <span class="category-badge">Interactive Calendar & Micro-Challenges</span>
+            </div>
+            <div class="section-header-flex">
+                <div>
+                    <h2 class="card-main-title">Personalized Daily Habits & Goal Planner</h2>
+                    <p class="card-desc">Transform AI risk assessment insights into scheduled daily commitments. Track
+                        streaks, daily completion milestones, and weekly adherence in one unified dashboard.</p>
+                </div>
+                <div class="streak-badge-card">
+                    <span class="streak-icon">🔥</span>
+                    <div>
+                        <span class="streak-num" id="habitStreakCount">3</span>
+                        <span class="streak-label">Day Streak</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="planner-layout">
+                <!-- Left Column: Interactive Calendar & Adherence Metrics -->
+                <div class="calendar-panel">
+                    <div class="calendar-header">
+                        <h4 id="calendarMonthYear">August 2026</h4>
+                        <span class="today-tag" id="currentDayOfWeek">Friday</span>
+                    </div>
+                    <div class="calendar-week-strip" id="calendarWeekStrip"></div>
+
+                    <div class="planner-metric-box">
+                        <div class="metric-label-row">
+                            <span>Today's Progress</span>
+                            <span id="habitProgressText" class="progress-text">0 / 0 Completed</span>
+                        </div>
+                        <div class="progress-track">
+                            <div id="habitProgress" class="progress-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="planner-metric-box">
+                        <div class="metric-label-row">
+                            <span>Weekly Target Adherence</span>
+                            <b id="weeklyCompletionPct">80%</b>
+                        </div>
+                        <div class="completion-track">
+                            <div id="weeklyCompletionFill" class="completion-fill" style="width: 80%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="calendar-actions">
+                        <button type="button" id="refreshHabits" class="planner-ai-btn">↻ Auto-Generate from
+                            Assessment</button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Goal Creation & Unified Commitments List -->
+                <div class="goals-panel">
+                    <div class="add-goal-box">
+                        <input type="text" id="customHabitInput"
+                            placeholder="Add custom habit or goal (e.g. Limit screen time to 30 mins)..."
+                            aria-label="Add custom habit or goal">
+                        <select id="goalCategorySelect" aria-label="Select Goal Category">
+                            <option value="📱 Screen Time">📱 Screen Time</option>
+                            <option value="🛌 Sleep Routine">🛌 Sleep Routine</option>
+                            <option value="📚 Study & Focus">📚 Study & Focus</option>
+                            <option value="🧘 Mindfulness">🧘 Mindfulness</option>
+                            <option value="⚡ Micro-Habit">⚡ Micro-Habit</option>
+                        </select>
+                        <button type="button" id="addCustomHabitBtn" class="action-pill-btn">+ Add Goal</button>
+                    </div>
+
+                    <ul id="microHabitsList" class="habit-list active-goals-list" aria-label="Habits and Goals List">
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURE 9: DIGITAL DETOX TIMER / FOCUS MODE SECTION -->
+        <section id="detox-timer-section" class="timer-card card-glow-hover">
+            <div class="section-tag-row">
+                <span class="section-subtitle">FEATURE 9: FOCUS & DETOX ENGINE</span>
+                <span class="category-badge">Screen-Free Countdown</span>
+            </div>
+            <h2 class="card-main-title">Digital Detox & Pomodoro Focus Timer</h2>
+            <p class="card-desc">Put your phone face down and disconnect from notifications immediately after taking
+                your assessment to protect focus stamina.</p>
+
+            <div class="timer-main-wrapper">
+                <div class="timer-circle-wrap">
+                    <svg class="timer-svg" viewBox="0 0 100 100">
+                        <circle class="timer-circle-bg" cx="50" cy="50" r="44"></circle>
+                        <circle class="timer-circle-progress" id="timerSvgProgress" cx="50" cy="50" r="44"></circle>
+                    </svg>
+                    <div class="timer-display">
+                        <span id="timerMM">25</span><span class="timer-sep">:</span><span id="timerSS">00</span>
+                        <span class="timer-mode-tag" id="timerModeTag">Detox Focus</span>
+                    </div>
+                </div>
+
+                <div class="timer-control-panel">
+                    <div class="timer-presets">
+                        <button type="button" data-mins="5" class="preset-btn">5 min</button>
+                        <button type="button" data-mins="15" class="preset-btn">15 min</button>
+                        <button type="button" data-mins="25" class="preset-btn active">25 min (Pomodoro)</button>
+                        <button type="button" data-mins="45" class="preset-btn">45 min</button>
+                        <button type="button" data-mins="60" class="preset-btn">60 min</button>
+                    </div>
+
+                    <div class="timer-controls">
+                        <button type="button" id="timerStart" class="submit-btn small">▶ Start Timer</button>
+                        <button type="button" id="timerPause" class="btn-secondary small">⏸ Pause</button>
+                        <button type="button" id="timerReset" class="linklike-btn danger">↺ Reset</button>
+                    </div>
+
+                    <div class="focus-mode-toggle-row">
+                        <button type="button" id="enterFullscreenFocusBtn" class="focus-mode-btn">🔲 Enter Immersive
+                            Focus Room</button>
+                    </div>
+
+                    <p id="timerStatus" class="timer-status">Ready. Select a preset and begin your screen-free break.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- FEATURE 10: COGNITIVE FOCUS MINI-GAMES SECTION -->
+        <section id="focus-games-section" class="games-card card-glow-hover">
+            <div class="section-tag-row">
+                <span class="section-subtitle">FEATURE 10: COGNITIVE MINI-GAMES</span>
+                <span class="category-badge">Brain Fatigue Tests</span>
+            </div>
+            <h2 class="card-main-title">2-Minute Cognitive Reaction & Memory Diagnostics</h2>
+            <p class="card-desc">Self-reported surveys can be subjective. Measure your actual neurological reaction
+                speed and working memory to objectively detect digital brain fatigue.</p>
+
+            <div class="games-tab-row">
+                <button type="button" id="tabGameReaction" class="game-tab-btn active">⚡ Millisecond Reflex
+                    Test</button>
+                <button type="button" id="tabGameMemory" class="game-tab-btn">🧠 Pattern Sequence Matrix</button>
+            </div>
+
+            <!-- GAME 1: REACTION TIME -->
+            <div id="reactionGameBox" class="game-wrapper">
+                <div class="reaction-target red" id="reactionClickArea">
+                    <div class="reaction-prompt-text" id="reactionPrompt">Click anywhere here to Start Reflex Test</div>
+                </div>
+                <div class="reaction-stats-bar">
+                    <div class="reflex-metric"><span>Trial:</span> <b id="reactionTrialNum">0 / 3</b></div>
+                    <div class="reflex-metric"><span>Last Time:</span> <b id="reactionLastTime">-- ms</b></div>
+                    <div class="reflex-metric"><span>Avg Reflex:</span> <b id="reactionAvgTime">-- ms</b></div>
+                    <div class="reflex-metric"><span>Cognitive Rating:</span> <b id="reactionRating">Ready</b></div>
+                </div>
+            </div>
+
+            <!-- GAME 2: MEMORY SEQUENCE -->
+            <div id="memoryGameBox" class="game-wrapper hidden">
+                <div class="memory-status-bar">
+                    <span>Level: <b id="memoryLevel">1</b></span>
+                    <span>Best Score: <b id="memoryBest">0</b></span>
+                    <button type="button" id="memoryStartBtn" class="action-pill-btn">▶ Start Sequence</button>
+                </div>
+                <div class="memory-grid" id="memoryGrid">
+                    <button class="mem-tile" data-index="0" aria-label="Tile 1"></button>
+                    <button class="mem-tile" data-index="1" aria-label="Tile 2"></button>
+                    <button class="mem-tile" data-index="2" aria-label="Tile 3"></button>
+                    <button class="mem-tile" data-index="3" aria-label="Tile 4"></button>
+                    <button class="mem-tile" data-index="4" aria-label="Tile 5"></button>
+                    <button class="mem-tile" data-index="5" aria-label="Tile 6"></button>
+                    <button class="mem-tile" data-index="6" aria-label="Tile 7"></button>
+                    <button class="mem-tile" data-index="7" aria-label="Tile 8"></button>
+                    <button class="mem-tile" data-index="8" aria-label="Tile 9"></button>
+                </div>
+                <p id="memoryInstruction" class="game-instruct">Press Start Sequence and watch the glowing pattern
+                    closely.</p>
+            </div>
+
+            <div class="game-sync-footer">
+                <button type="button" id="syncFatigueToAssessmentBtn" class="action-pill-btn highlight">🎯 Feed
+                    Cognitive Score into Assessment</button>
+            </div>
+        </section>
+
+ 
 
         <!-- FEATURE 11: AUDIO-GUIDED RELAXATION SESSIONS SECTION -->
         <section id="relaxation-section" class="relax-card card-glow-hover">
