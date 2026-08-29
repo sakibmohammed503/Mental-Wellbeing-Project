@@ -1308,7 +1308,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             },
                             {
                                 label: "Platform Peer Average",
-                                data: [68, 55, 60, 65, 52],
+                                data: [77, 70, 55, 79, 55],
                                 backgroundColor: "rgba(245, 158, 11, 0.15)",
                                 borderColor: "#f59e0b",
                                 pointBackgroundColor: "#f59e0b"
@@ -1347,7 +1347,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Grouped Bar Chart
         const barCanvas = document.getElementById("peerBarChart");
         if (barCanvas) {
-            const barDataYou = [d.sleep_hours, d.social_media_hours, d.short_video_hours];
+            const barDataYou = [d.sleep_hours, Number((d.social_media_hours + d.short_video_hours).toFixed(1)), Number((d.study_hours_per_week / 7).toFixed(1)), d.sessions_per_day, d.digital_addiction_score];
             if (peerBarChart && peerBarChart.ctx) {
                 peerBarChart.data.datasets[0].data = barDataYou;
                 if (peerBarChart.options && peerBarChart.options.scales && peerBarChart.options.scales.y) {
@@ -1363,10 +1363,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 peerBarChart = new Chart(barCanvas.getContext("2d"), {
                     type: "bar",
                     data: {
-                        labels: ["Sleep (h)", "Social Media (h)", "Short Video (h)"],
+                        labels: ["Sleep Hours", "Screen Moderation", "Study Focus", "Session Restraint", "Addiction Resistance"],
                         datasets: [
                             { label: "You", data: barDataYou, backgroundColor: "#007bff", borderRadius: 4 },
-                            { label: "Peer Avg", data: [6.8, 3.4, 2.1], backgroundColor: "#94a3b8", borderRadius: 4 }
+                            { label: "Peer Avg", data: [7, 4.5, 3.1, 6, 4.5], backgroundColor: "#94a3b8", borderRadius: 4 }
                         ]
                     },
                     options: {
